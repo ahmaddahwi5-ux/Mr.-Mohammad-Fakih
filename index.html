@@ -1,1013 +1,1317 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Peer Pressure Mr. Mohammad Fakih</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons Library -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            950: '#02040a',
-                            900: '#070b19',
-                            800: '#0f172a',
-                            700: '#1e293b',
-                        },
-                        electric: {
-                            cyan: '#06b6d4',
-                            blue: '#3b82f6',
-                            purple: '#8b5cf6',
-                            pink: '#ec4899',
-                            emerald: '#10b981',
-                            rose: '#f43f5e'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-                    },
-                    animation: {
-                        'gradient-x': 'gradient-x 15s ease infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
-                        'spin-slow': 'spin 20s linear infinite',
-                    },
-                    keyframes: {
-                        'gradient-x': {
-                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
-                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
-                        },
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-12px)' },
-                        },
-                        'pulseGlow': {
-                            '0%, 100%': { opacity: '0.35', transform: 'scale(1)' },
-                            '50%': { opacity: '0.75', transform: 'scale(1.08)' },
-                        }
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كورة وبادل لبنان | منصة حجز الملاعب الأولى في لبنان</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Tajawal & Cairo -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0a0e14',
+              card: '#121824',
+              cardBorder: 'rgba(0, 255, 136, 0.15)',
+              neon: '#00ff88',
+              emerald: '#10b981',
+              gold: '#ffd700',
+              accent: '#38ef7d',
+              glass: 'rgba(18, 24, 36, 0.75)'
             }
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            tajawal: ['Tajawal', 'sans-serif']
+          }
         }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #02040a;
-            color: #f1f5f9;
-            overflow-x: hidden;
-        }
+      }
+    }
+  </script>
 
-        /* Glassmorphism Styles */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-        }
-
-        .glass-panel-hover {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .glass-panel-hover:hover {
-            transform: translateY(-6px);
-            border-color: rgba(139, 92, 246, 0.4);
-            box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.3);
-        }
-
-        .glass-card-positive:hover {
-            border-color: rgba(16, 185, 129, 0.5);
-            box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.25);
-        }
-
-        .glass-card-negative:hover {
-            border-color: rgba(244, 63, 94, 0.5);
-            box-shadow: 0 20px 40px -15px rgba(244, 63, 94, 0.25);
-        }
-
-        /* Gradient Typography */
-        .text-gradient-hero {
-            background: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .text-gradient-cyan {
-            background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .text-gradient-gold {
-            background: linear-gradient(135deg, #fef08a 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Glowing Effects */
-        .glow-purple {
-            box-shadow: 0 0 35px -5px rgba(139, 92, 246, 0.35);
-        }
-
-        .glow-cyan {
-            box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.35);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #02040a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 9999px;
-            border: 2px solid #02040a;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #8b5cf6;
-        }
-
-        /* Background Ambient Glow Spheres */
-        .ambient-glow {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(140px);
-            pointer-events: none;
-            z-index: 0;
-        }
-    </style>
+  <style>
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      background-color: #0a0e14;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    
+    /* Neon glow effect */
+    .neon-glow {
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.35);
+    }
+    .neon-glow-sm {
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.25);
+    }
+    .neon-text {
+      text-shadow: 0 0 12px rgba(0, 255, 136, 0.6);
+    }
+    .gold-text {
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    .glass-panel {
+      background: rgba(18, 24, 36, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 136, 0.15);
+    }
+    
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0e14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f293d;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 255, 136, 0.2);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00ff88;
+    }
+  </style>
 </head>
-<body class="bg-[#02040a] text-slate-100 antialiased selection:bg-purple-500 selection:text-white relative">
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-neon selection:text-black">
 
-    <!-- Interactive HTML5 Canvas Background -->
-    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-50"></canvas>
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-gradient-to-r from-emerald-900 via-green-900 to-emerald-950 text-white text-xs sm:text-sm py-2 px-4 text-center border-b border-brand-neon/20 flex justify-between items-center px-4 md:px-8">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-brand-neon animate-ping"></span>
+      <span class="font-bold">المنصة الأولى والحديثة لحجز ملاعب كرة القدم والبادل في كافة الأراضي اللبنانية 🇱🇧</span>
+    </div>
+    <div class="hidden sm:flex items-center gap-4 text-xs text-gray-300">
+      <span><i class="fa-brands font-bold fa-whatsapp text-green-400"></i> الدعم الفني المباشر: 81934766</span>
+    </div>
+  </div>
 
-    <!-- Glowing Ambient Background Orbs -->
-    <div class="ambient-glow w-[550px] h-[550px] bg-purple-600/20 -top-20 -left-20 animate-pulse-glow"></div>
-    <div class="ambient-glow w-[650px] h-[650px] bg-blue-600/15 top-[35%] -right-32 animate-pulse-glow" style="animation-delay: 2s;"></div>
-    <div class="ambient-glow w-[600px] h-[600px] bg-cyan-600/15 bottom-[10%] -left-20 animate-pulse-glow" style="animation-delay: 4s;"></div>
+  <!-- NAVIGATION BAR -->
+  <nav class="sticky top-0 z-40 glass-panel border-b border-brand-neon/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('browse')">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-neon to-green-600 flex items-center justify-center text-black font-black text-2xl shadow-lg neon-glow">
+            <i class="fa-solid fa-futbol"></i>
+          </div>
+          <div>
+            <h1 class="text-xl font-black text-white tracking-wider flex items-center gap-2">
+              كورة <span class="text-brand-neon font-black">&amp; بادل</span>
+            </h1>
+            <p class="text-xs text-gray-400 font-medium">لبنان | Lebanon Court Arena</p>
+          </div>
+        </div>
 
-    <!-- Sticky Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-4 sm:px-8" id="navbar">
-        <div class="max-w-7xl mx-auto glass-panel rounded-full px-6 py-3 flex items-center justify-between border border-white/10 shadow-2xl">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-600 flex items-center justify-center p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <div class="w-full h-full bg-navy-950 rounded-full flex items-center justify-center">
-                        <i data-lucide="shield-check" class="w-5 h-5 text-cyan-400 group-hover:text-purple-400 transition-colors"></i>
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-lg tracking-tight text-white group-hover:text-cyan-400 transition-colors">INFLUENCE<span class="text-purple-500">LAB</span></span>
-                    <span class="text-[10px] text-slate-400 font-medium tracking-widest uppercase -mt-1">Guide by Mr. Mohammad Fakih</span>
-                </div>
-            </a>
+        <!-- Center Nav Items -->
+        <div class="hidden md:flex items-center gap-1 bg-black/40 p-1.5 rounded-2xl border border-gray-800">
+          <button onclick="switchTab('browse')" id="nav-browse" class="px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 bg-brand-neon text-black shadow-lg">
+            <i class="fa-solid fa-compass ml-1"></i> استكشاف الملاعب
+          </button>
+          <button onclick="switchTab('my-bookings')" id="nav-my-bookings" class="px-5 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-white transition-all">
+            <i class="fa-solid fa-ticket ml-1"></i> حجوزاتي
+          </button>
+          <button onclick="switchTab('owner-dashboard')" id="nav-owner-dashboard" class="px-5 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-white transition-all">
+            <i class="fa-solid fa-building-user ml-1"></i> لوحة صاحب الملعب
+          </button>
+          <button onclick="switchTab('admin-dashboard')" id="nav-admin-dashboard" class="px-5 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-white transition-all">
+            <i class="fa-solid fa-shield-halved ml-1"></i> لوحة المدير العام
+          </button>
+        </div>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-slate-300">
-                <a href="#about" class="hover:text-cyan-400 transition-colors py-1 relative group">
-                    What Is It?
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#types" class="hover:text-cyan-400 transition-colors py-1 relative group">
-                    5 Types
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#drivers" class="hover:text-cyan-400 transition-colors py-1 relative group">
-                    Causes
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#matrix" class="hover:text-cyan-400 transition-colors py-1 relative group">
-                    Matrix
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#simulator" class="hover:text-cyan-400 transition-colors py-1 relative group">
-                    Simulator
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#quiz" class="hover:text-cyan-400 transition-colors py-1 relative group">
-                    Self-Quiz
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-            </nav>
+        <!-- Right Side: User Controls & Deployment Guide -->
+        <div class="flex items-center gap-3">
+          <button onclick="openModal('deployment-modal')" class="hidden lg:flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 text-yellow-400 border border-yellow-500/40 hover:bg-yellow-500/30 px-3 py-2 rounded-xl text-xs font-bold transition">
+            <i class="fa-solid fa-code-branch"></i> دليل التشغيل والنشر
+          </button>
 
-            <!-- Actions -->
-            <div class="hidden sm:flex items-center gap-4">
-                <a href="#quiz" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:opacity-95 transition-all shadow-lg hover:shadow-cyan-500/25 active:scale-95 flex items-center gap-2">
-                    <i data-lucide="sparkles" class="w-4 h-4"></i>
-                    <span>Take Assessment</span>
-                </a>
-            </div>
+          <!-- Dynamic User Status -->
+          <div id="user-status-container" class="flex items-center gap-2 bg-brand-card px-3 py-1.5 rounded-xl border border-brand-cardBorder">
+            <!-- Rendered by JS -->
+          </div>
 
-            <!-- Mobile Menu Toggle -->
-            <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 focus:outline-none" aria-label="Toggle menu">
-                <i data-lucide="menu" class="w-6 h-6"></i>
+          <button onclick="openModal('role-switcher-modal')" class="bg-gray-800 hover:bg-gray-700 text-brand-neon px-3 py-2 rounded-xl text-xs font-bold border border-brand-neon/30 transition flex items-center gap-1">
+            <i class="fa-solid fa-user-gear"></i> تبديل الحساب (تجريبي)
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+    <!-- ==================== VIEW 1: BROWSE & BOOK (CUSTOMER) ==================== -->
+    <div id="view-browse" class="space-y-8">
+      
+      <!-- HERO BANNER -->
+      <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-emerald-950 to-black p-8 md:p-12 border border-brand-neon/30 shadow-2xl">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#00ff88_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="relative z-10 max-w-2xl space-y-4">
+          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-neon/10 text-brand-neon border border-brand-neon/30">
+            <i class="fa-solid fa-bolt"></i> حجز فوري بدون انتظار
+          </span>
+          <h2 class="text-3xl md:text-5xl font-black text-white leading-tight">
+            احجز ملعبك المفضل في <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-neon via-emerald-400 to-yellow-400">لبنان</span> بكل سهولة وسرعة!
+          </h2>
+          <p class="text-gray-300 text-sm md:text-base leading-relaxed">
+            منصة متكاملة تجمع أفضل ملاعب كرة القدم والبادل في بيروت، طرابلس، صيدا، صور، المتن، كسروان، وكافة المناطق اللبنانية. اختر التوقيت المناسب واحجز فورًا مع ضمان عدم التضارب في المواعيد.
+          </p>
+        </div>
+      </div>
+
+      <!-- SEARCH & FILTER BAR -->
+      <div class="glass-panel p-5 rounded-2xl border border-brand-neon/20 shadow-xl space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <!-- Filter Region -->
+          <div>
+            <label class="block text-xs font-bold text-gray-400 mb-1.5"><i class="fa-solid fa-location-dot text-brand-neon ml-1"></i> المنطقة في لبنان</label>
+            <select id="filter-region" onchange="applyFilters()" class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+              <option value="ALL">جميع المناطق اللبنانية</option>
+              <option value="بيروت">بيروت الكبرى (Beirut)</option>
+              <option value="المتن">المتن وكسروان (Metn / Keserwan)</option>
+              <option value="طرابلس">طرابلس والشمال (Tripoli / North)</option>
+              <option value="صيدا">صيدا والجنوب (Saida / South)</option>
+              <option value="صور">صور (Tyre)</option>
+              <option value="زحلة">زحلة والبقاع (Zahle / Bekaa)</option>
+              <option value="عالية">عاليه والشوف (Aley / Chouf)</option>
+            </select>
+          </div>
+
+          <!-- Filter Sport Type -->
+          <div>
+            <label class="block text-xs font-bold text-gray-400 mb-1.5"><i class="fa-solid fa-trophy text-brand-neon ml-1"></i> نوع الملعب</label>
+            <select id="filter-type" onchange="applyFilters()" class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+              <option value="ALL">جميع الأنواع (كرة قدم وبادل)</option>
+              <option value="FOOTBALL">كرة قدم (Football)</option>
+              <option value="PADEL">بادل (Padel)</option>
+            </select>
+          </div>
+
+          <!-- Filter Search Keyword -->
+          <div>
+            <label class="block text-xs font-bold text-gray-400 mb-1.5"><i class="fa-solid fa-magnifying-glass text-brand-neon ml-1"></i> بحث باسم الملعب</label>
+            <input type="text" id="filter-search" oninput="applyFilters()" placeholder="مثال: Arena, Smash, Champion..." class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+          </div>
+
+          <!-- Quick Reset Button -->
+          <div class="flex items-end">
+            <button onclick="resetFilters()" class="w-full bg-slate-800 hover:bg-slate-700 text-gray-200 text-sm font-bold py-2.5 rounded-xl border border-gray-700 transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rotate"></i> إعادة ضبط الفلاتر
             </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- COURTS GRID SECTION -->
+      <div>
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-black text-white flex items-center gap-2">
+            <i class="fa-solid fa-map-pin text-brand-neon"></i> الملاعب المتاحة للحجز 
+            <span id="courts-count-badge" class="bg-brand-neon/20 text-brand-neon text-xs px-2.5 py-1 rounded-full border border-brand-neon/30">0 ملعب</span>
+          </h3>
+          <p class="text-xs text-gray-400 hidden sm:block">تحديث مباشر للملاعب المعتمدة من الإدارة</p>
         </div>
 
-        <!-- Mobile Drawer -->
-        <div id="mobileMenu" class="hidden lg:hidden max-w-7xl mx-auto mt-2 glass-panel rounded-2xl p-6 border border-white/10 flex flex-col gap-4 text-center">
-            <a href="#about" class="text-slate-200 hover:text-cyan-400 py-2 font-medium">What is Peer Pressure?</a>
-            <a href="#types" class="text-slate-200 hover:text-cyan-400 py-2 font-medium">The 5 Types</a>
-            <a href="#drivers" class="text-slate-200 hover:text-cyan-400 py-2 font-medium">Causes & Drivers</a>
-            <a href="#matrix" class="text-slate-200 hover:text-cyan-400 py-2 font-medium">Positive vs Negative Matrix</a>
-            <a href="#simulator" class="text-slate-200 hover:text-cyan-400 py-2 font-medium">Scenario Simulator</a>
-            <a href="#quiz" class="text-slate-200 hover:text-cyan-400 py-2 font-medium">Self-Check Quiz</a>
-            <a href="#quiz" class="mt-2 w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 to-purple-600">Start Assessment</a>
+        <div id="courts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Dynamic Content rendered by JS -->
         </div>
-    </header>
-
-    <main class="relative z-10 pt-28">
-
-        <!-- HERO SECTION -->
-        <section class="min-h-[88vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-12">
-                
-                <!-- Left Hero Content -->
-                <div class="lg:col-span-7 flex flex-col items-start text-left space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-cyan-500/40 text-cyan-300 text-xs font-semibold tracking-wide uppercase">
-                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
-                        Award-Winning Educational Platform
-                    </div>
-
-                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
-                        UNDERSTANDING <br>
-                        <span class="text-gradient-hero">PEER PRESSURE</span>
-                    </h1>
-
-                    <p class="text-slate-300 text-base sm:text-xl max-w-2xl font-normal leading-relaxed">
-                        Peer pressure is a powerful social dynamic shaping teenage life. Learn to decode social influences, master decision-making, and build strong individual autonomy.
-                    </p>
-
-                    <!-- Dedicated Mentor Tagline -->
-                    <div class="flex items-center gap-3 p-3.5 rounded-2xl glass-panel border border-purple-500/30 bg-purple-950/20 max-w-xl">
-                        <div class="w-9 h-9 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
-                            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-                        </div>
-                        <p class="text-xs text-purple-200 font-medium">
-                            Created under the educational leadership and guidance of <strong class="text-white font-bold underline decoration-cyan-400">Mr. Mohammad Fakih</strong>.
-                        </p>
-                    </div>
-
-                    <!-- CTA Buttons -->
-                    <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
-                        <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2">
-                            <span>Explore Module</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </a>
-                        <a href="#simulator" class="w-full sm:w-auto px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-200 glass-panel hover:bg-white/10 transition-all border border-white/15 text-center flex items-center justify-center gap-2">
-                            <i data-lucide="gamepad-2" class="w-4 h-4 text-cyan-400"></i>
-                            <span>Interactive Simulator</span>
-                        </a>
-                    </div>
-
-                    <!-- Animated Stats Counters -->
-                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-white/10 w-full">
-                        <div>
-                            <div class="text-2xl sm:text-4xl font-extrabold text-cyan-400 tracking-tight" id="stat1">90%</div>
-                            <div class="text-[11px] sm:text-xs text-slate-400 font-medium mt-1">Teens Experience Pressure</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl sm:text-4xl font-extrabold text-purple-400 tracking-tight" id="stat2">75%</div>
-                            <div class="text-[11px] sm:text-xs text-slate-400 font-medium mt-1">Positive Influence Potential</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl sm:text-4xl font-extrabold text-pink-400 tracking-tight" id="stat3">100%</div>
-                            <div class="text-[11px] sm:text-xs text-slate-400 font-medium mt-1">Your Choice Control</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Hero Visual Vector Scene -->
-                <div class="lg:col-span-5 relative flex items-center justify-center">
-                    <div class="relative w-full max-w-md aspect-square rounded-3xl glass-panel p-6 border border-white/15 shadow-2xl flex items-center justify-center overflow-hidden group">
-                        
-                        <!-- Glowing Radial Gradient -->
-                        <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-purple-500/10 to-pink-500/10 animate-pulse"></div>
-
-                        <!-- Vector Graphic Art: Social Dynamic Network -->
-                        <svg class="w-full h-full relative z-10" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Background Circles -->
-                            <circle cx="200" cy="200" r="160" stroke="rgba(255,255,255,0.06)" stroke-width="2" stroke-dasharray="6 6" class="animate-spin-slow"/>
-                            <circle cx="200" cy="200" r="110" stroke="rgba(139,92,246,0.2)" stroke-width="2"/>
-                            <circle cx="200" cy="200" r="60" stroke="rgba(6,182,212,0.3)" stroke-width="2"/>
-
-                            <!-- Dynamic Connection Lines -->
-                            <line x1="200" y1="200" x2="110" y2="90" stroke="url(#line-grad-1)" stroke-width="2.5"/>
-                            <line x1="200" y1="200" x2="290" y2="100" stroke="url(#line-grad-2)" stroke-width="2.5"/>
-                            <line x1="200" y1="200" x2="310" y2="270" stroke="url(#line-grad-1)" stroke-width="2.5"/>
-                            <line x1="200" y1="200" x2="90" y2="280" stroke="url(#line-grad-2)" stroke-width="2.5"/>
-
-                            <!-- Node 1: Direct Influence -->
-                            <g class="animate-float" style="animation-delay: 0s;">
-                                <circle cx="110" cy="90" r="24" fill="#070b19" stroke="#06b6d4" stroke-width="3"/>
-                                <path d="M102 90 L118 90 M110 82 L110 98" stroke="#06b6d4" stroke-width="2.5"/>
-                            </g>
-
-                            <!-- Node 2: Positive Encouragement -->
-                            <g class="animate-float" style="animation-delay: 1.2s;">
-                                <circle cx="290" cy="100" r="26" fill="#070b19" stroke="#10b981" stroke-width="3"/>
-                                <circle cx="290" cy="100" r="8" fill="#10b981"/>
-                            </g>
-
-                            <!-- Node 3: Unspoken Expectations -->
-                            <g class="animate-float" style="animation-delay: 2.2s;">
-                                <circle cx="310" cy="270" r="22" fill="#070b19" stroke="#8b5cf6" stroke-width="3"/>
-                                <polygon points="310,262 317,275 303,275" fill="#8b5cf6"/>
-                            </g>
-
-                            <!-- Node 4: Personal Identity -->
-                            <g class="animate-float" style="animation-delay: 1.8s;">
-                                <circle cx="90" cy="280" r="28" fill="#070b19" stroke="#ec4899" stroke-width="3"/>
-                                <circle cx="90" cy="280" r="10" stroke="#ec4899" stroke-width="2"/>
-                            </g>
-
-                            <!-- Central Individual Core Node -->
-                            <circle cx="200" cy="200" r="36" fill="url(#core-grad)" filter="drop-shadow(0px 0px 20px rgba(6,182,212,0.8))"/>
-                            <circle cx="200" cy="200" r="14" fill="#ffffff"/>
-
-                            <!-- SVG Gradients -->
-                            <defs>
-                                <linearGradient id="line-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#06b6d4" />
-                                    <stop offset="100%" stop-color="#8b5cf6" />
-                                </linearGradient>
-                                <linearGradient id="line-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#ec4899" />
-                                    <stop offset="100%" stop-color="#3b82f6" />
-                                </linearGradient>
-                                <linearGradient id="core-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#22d3ee" />
-                                    <stop offset="50%" stop-color="#6366f1" />
-                                    <stop offset="100%" stop-color="#a855f7" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-
-                        <!-- Visual Label -->
-                        <div class="absolute bottom-4 left-4 right-4 glass-panel p-3.5 rounded-2xl border border-white/10 flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold shrink-0">
-                                <i data-lucide="network" class="w-4 h-4"></i>
-                            </div>
-                            <div class="text-xs">
-                                <p class="font-bold text-white">Social Influence Map</p>
-                                <p class="text-slate-400 text-[11px]">You are at the center of your social universe.</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- SECTION 1: WHAT IS PEER PRESSURE? -->
-        <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2 block">Core Foundations</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-                    What is Peer Pressure?
-                </h2>
-                <p class="text-slate-400 mt-4 text-sm sm:text-base leading-relaxed">
-                    Peer pressure occurs when friends or age group members influence how you think, act, or feel. It is a natural byproduct of human social interaction.
-                </p>
-            </div>
-
-            <!-- Definition Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="glass-panel glass-panel-hover rounded-2xl p-8 border border-white/10 flex flex-col justify-between group">
-                    <div>
-                        <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="users-2" class="w-7 h-7"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Social Belonging</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                            During adolescence, the brain's social reward systems develop rapidly. Seeking connection and acceptance from peers is a normal developmental milestone.
-                        </p>
-                    </div>
-                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center text-xs font-semibold text-cyan-400">
-                        <span>Biological Drive</span>
-                        <i data-lucide="chevron-right" class="w-4 h-4 ml-auto"></i>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="glass-panel glass-panel-hover rounded-2xl p-8 border border-white/10 flex flex-col justify-between group">
-                    <div>
-                        <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="brain-circuit" class="w-7 h-7"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Implicit Shaping</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                            Peer pressure is not always aggressive dares. It often acts silently, quietly altering language, clothing choices, hobbies, and personal perspectives.
-                        </p>
-                    </div>
-                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center text-xs font-semibold text-purple-400">
-                        <span>Subconscious Norms</span>
-                        <i data-lucide="chevron-right" class="w-4 h-4 ml-auto"></i>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="glass-panel glass-panel-hover rounded-2xl p-8 border border-white/10 flex flex-col justify-between group">
-                    <div>
-                        <div class="w-14 h-14 rounded-2xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="compass" class="w-7 h-7"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Personal Autonomy</h3>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                            True maturity is not isolating yourself from others, but choosing which social influences align with your personal values and ethics.
-                        </p>
-                    </div>
-                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center text-xs font-semibold text-pink-400">
-                        <span>Self Mastery</span>
-                        <i data-lucide="chevron-right" class="w-4 h-4 ml-auto"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- SECTION 2: THE 5 TYPES OF PEER PRESSURE -->
-        <section id="types" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-purple-400 mb-2 block">Categories</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-                    The 5 Types of Peer Pressure
-                </h2>
-                <p class="text-slate-400 mt-4 text-sm sm:text-base">
-                    Recognizing how pressure is transmitted allows you to choose the appropriate response strategy.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                
-                <!-- Type 1 -->
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="text-3xl font-black text-cyan-400/30 mb-4 group-hover:text-cyan-400 transition-colors">01</div>
-                        <h4 class="text-lg font-bold text-white mb-2">Spoken Direct</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed">
-                            Direct verbal requests, dares, or commands. For example: "Try this now," or "Come on, don't be boring!"
-                        </p>
-                    </div>
-                    <div class="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-cyan-400">
-                        <i data-lucide="message-square" class="w-4 h-4"></i> Explicit Verbal
-                    </div>
-                </div>
-
-                <!-- Type 2 -->
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="text-3xl font-black text-purple-400/30 mb-4 group-hover:text-purple-400 transition-colors">02</div>
-                        <h4 class="text-lg font-bold text-white mb-2">Unspoken Indirect</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed">
-                            Silent social expectations. Observing fashion, speech patterns, or group behaviors and feeling compelled to imitate them.
-                        </p>
-                    </div>
-                    <div class="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-purple-400">
-                        <i data-lucide="eye" class="w-4 h-4"></i> Silent Norms
-                    </div>
-                </div>
-
-                <!-- Type 3 -->
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-pink-500/50 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="text-3xl font-black text-pink-400/30 mb-4 group-hover:text-pink-400 transition-colors">03</div>
-                        <h4 class="text-lg font-bold text-white mb-2">Self-Imposed</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed">
-                            Internal pressure stemming from your perception of what is needed to be accepted, even if peers aren't actively pushing you.
-                        </p>
-                    </div>
-                    <div class="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-pink-400">
-                        <i data-lucide="user-check" class="w-4 h-4"></i> Internal Urge
-                    </div>
-                </div>
-
-                <!-- Type 4 -->
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="text-3xl font-black text-blue-400/30 mb-4 group-hover:text-blue-400 transition-colors">04</div>
-                        <h4 class="text-lg font-bold text-white mb-2">Digital / Cyber</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed">
-                            Amplified by social media trends, viral challenges, likes, group chats, and the Fear Of Missing Out (FOMO).
-                        </p>
-                    </div>
-                    <div class="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-blue-400">
-                        <i data-lucide="smartphone" class="w-4 h-4"></i> Online Spheres
-                    </div>
-                </div>
-
-                <!-- Type 5 -->
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="text-3xl font-black text-emerald-400/30 mb-4 group-hover:text-emerald-400 transition-colors">05</div>
-                        <h4 class="text-lg font-bold text-white mb-2">Positive Constructive</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed">
-                            Uplifting group pressure encouraging study habits, sports dedication, kindness, and personal development.
-                        </p>
-                    </div>
-                    <div class="mt-6 inline-flex items-center gap-2 text-xs font-semibold text-emerald-400">
-                        <i data-lucide="trending-up" class="w-4 h-4"></i> Uplifting Growth
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- SECTION 3: CAUSES & DRIVERS -->
-        <section id="drivers" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2 block">Psychological Triggers</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-                    Root Causes & Drivers
-                </h2>
-                <p class="text-slate-400 mt-4 text-sm sm:text-base">
-                    Why do we feel compelled to conform? Understanding the underlying emotional drivers grants you emotional clarity.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Driver 1 -->
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-400/40 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6">
-                        <i data-lucide="heart-off" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Fear of Rejection</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        An instinctual fear that standing out or saying "No" will lead to mockery, isolation, or loss of friendship.
-                    </p>
-                </div>
-
-                <!-- Driver 2 -->
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-purple-400/40 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-6">
-                        <i data-lucide="sparkles" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Desire for Status</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        The urge to fit into popular social circles, gain approval, or project an image of maturity and confidence.
-                    </p>
-                </div>
-
-                <!-- Driver 3 -->
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-pink-400/40 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center mb-6">
-                        <i data-lucide="compass" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Identity Exploration</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        During teenage years, individuals test different roles, fashion styles, and values as they discover who they truly are.
-                    </p>
-                </div>
-
-                <!-- Driver 4 -->
-                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-blue-400/40 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-6">
-                        <i data-lucide="shield-alert" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Unclear Boundaries</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Not having pre-determined personal rules makes it harder to respond under fast-paced social pressure.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- SECTION 4: POSITIVE VS NEGATIVE MATRIX -->
-        <section id="matrix" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2 block">Dual Matrix</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-                    Positive vs. Negative Influence
-                </h2>
-                <p class="text-slate-400 mt-4 text-sm sm:text-base">
-                    Peer pressure is a powerful engine. It can either elevate your potential or steer you toward risky behaviors.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
-                <!-- POSITIVE INFLUENCE CARD -->
-                <div class="glass-panel glass-card-positive rounded-3xl p-8 sm:p-10 border border-emerald-500/30 relative overflow-hidden transition-all duration-300">
-                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/40">
-                            <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Positive Peer Pressure</h3>
-                            <p class="text-emerald-400 text-xs font-semibold uppercase tracking-wider">Growth & Encouragement</p>
-                        </div>
-                    </div>
-
-                    <ul class="space-y-4 text-slate-300 text-sm">
-                        <li class="flex items-start gap-3 glass-panel p-4 rounded-xl border border-white/5">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong class="text-white block">Academic Excellence</strong>
-                                Study groups that inspire you to prepare thoroughly, aim higher, and master challenging topics.
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3 glass-panel p-4 rounded-xl border border-white/5">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong class="text-white block">Healthy Lifestyle & Sports</strong>
-                                Teammates encouraging regular exercise, good nutrition, mental wellness, and self-discipline.
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3 glass-panel p-4 rounded-xl border border-white/5">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong class="text-white block">Moral Leadership</strong>
-                                Friends standing up against bullying, helping community causes, and treating everyone with respect.
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- NEGATIVE INFLUENCE CARD -->
-                <div class="glass-panel glass-card-negative rounded-3xl p-8 sm:p-10 border border-rose-500/30 relative overflow-hidden transition-all duration-300">
-                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center border border-rose-500/40">
-                            <i data-lucide="arrow-down-right" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Negative Peer Pressure</h3>
-                            <p class="text-rose-400 text-xs font-semibold uppercase tracking-wider">Risks & Coercion</p>
-                        </div>
-                    </div>
-
-                    <ul class="space-y-4 text-slate-300 text-sm">
-                        <li class="flex items-start gap-3 glass-panel p-4 rounded-xl border border-white/5">
-                            <i data-lucide="x-circle" class="w-5 h-5 text-rose-400 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong class="text-white block">Reckless Risk-Taking</strong>
-                                Coercion into dangerous dares, substance abuse, reckless driving, or breaking laws.
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3 glass-panel p-4 rounded-xl border border-white/5">
-                            <i data-lucide="x-circle" class="w-5 h-5 text-rose-400 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong class="text-white block">Compromising Values</strong>
-                                Pressuring you to cheat academically, lie to parents, or abandon personal integrity.
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3 glass-panel p-4 rounded-xl border border-white/5">
-                            <i data-lucide="x-circle" class="w-5 h-5 text-rose-400 shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong class="text-white block">Social Exclusion & Gossip</strong>
-                                Group demands to isolate, bully, or spread rumors about specific classmates.
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- SECTION 5: SCENARIO SIMULATOR -->
-        <section id="simulator" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-purple-400 mb-2 block">Practical Skills</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-                    Interactive Scenario Simulator
-                </h2>
-                <p class="text-slate-400 mt-4 text-sm sm:text-base">
-                    Test your peer pressure tactics in realistic teen scenarios and learn how to maintain control calmly.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                <!-- Left: Tactic Cards (6 cols) -->
-                <div class="lg:col-span-6 space-y-4">
-                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                        <i data-lucide="shield" class="w-5 h-5 text-cyan-400"></i>
-                        The Teen Refusal Toolkit
-                    </h3>
-
-                    <div class="glass-panel p-5 rounded-2xl border border-white/10 flex gap-4 items-start hover:border-cyan-500/40 transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 font-extrabold">1</div>
-                        <div>
-                            <h4 class="text-base font-bold text-white">The Broken Record Strategy</h4>
-                            <p class="text-slate-300 text-xs mt-1 leading-relaxed">
-                                State your refusal clearly and repeat the same simple line without giving complex excuses: <em>"No thanks, I'm good."</em>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="glass-panel p-5 rounded-2xl border border-white/10 flex gap-4 items-start hover:border-purple-500/40 transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0 font-extrabold">2</div>
-                        <div>
-                            <h4 class="text-base font-bold text-white">The Pivot & Redirect</h4>
-                            <p class="text-slate-300 text-xs mt-1 leading-relaxed">
-                                Decline while swiftly moving the conversation to another topic: <em>"Nah, not for me. Hey, who is winning the game?"</em>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="glass-panel p-5 rounded-2xl border border-white/10 flex gap-4 items-start hover:border-pink-500/40 transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center shrink-0 font-extrabold">3</div>
-                        <div>
-                            <h4 class="text-base font-bold text-white">The Code Word Exit</h4>
-                            <p class="text-slate-300 text-xs mt-1 leading-relaxed">
-                                Set up a secret code text with parents or older siblings. Texting it prompts an immediate call asking you to come home.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Interactive Simulator Widget (6 cols) -->
-                <div class="lg:col-span-6 glass-panel p-8 rounded-3xl border border-purple-500/40 glow-purple relative">
-                    <div class="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="gamepad-2" class="w-5 h-5 text-cyan-400"></i>
-                            <h3 class="font-bold text-white text-base">Scenario Navigator</h3>
-                        </div>
-                        <span class="text-[10px] px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 font-semibold uppercase tracking-wider">Simulator Active</span>
-                    </div>
-
-                    <div id="scenarioContainer" class="space-y-6">
-                        <div class="glass-panel p-4 rounded-xl border border-white/10">
-                            <p class="text-xs font-bold text-purple-400 uppercase tracking-wider mb-1">Scenario Challenge:</p>
-                            <p class="text-sm font-medium text-slate-200 leading-relaxed" id="scenarioQuestion">
-                                You are hanging out with friends after school, and they urge you to skip homework and sneak into a restricted area. Someone says: "Don't be scared, everyone is coming!" What do you do?
-                            </p>
-                        </div>
-
-                        <!-- Interactive Options -->
-                        <div class="space-y-3" id="scenarioOptions">
-                            <button onclick="checkScenario(0)" class="w-full p-3.5 rounded-xl text-left text-xs font-medium text-slate-300 glass-panel border border-white/10 hover:border-cyan-400 hover:text-white transition-all flex items-center justify-between group">
-                                <span>A. Go along with them so they don't call you scared.</span>
-                                <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            </button>
-                            <button onclick="checkScenario(1)" class="w-full p-3.5 rounded-xl text-left text-xs font-medium text-slate-300 glass-panel border border-white/10 hover:border-cyan-400 hover:text-white transition-all flex items-center justify-between group">
-                                <span>B. "No thanks, I have an important test tomorrow. Let's catch up later."</span>
-                                <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            </button>
-                            <button onclick="checkScenario(2)" class="w-full p-3.5 rounded-xl text-left text-xs font-medium text-slate-300 glass-panel border border-white/10 hover:border-cyan-400 hover:text-white transition-all flex items-center justify-between group">
-                                <span>C. Start a heated argument and yell at them.</span>
-                                <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            </button>
-                        </div>
-
-                        <!-- Feedback Output -->
-                        <div id="scenarioFeedback" class="hidden p-4 rounded-xl text-xs leading-relaxed font-medium"></div>
-
-                        <button onclick="resetScenario()" id="resetScenarioBtn" class="hidden w-full py-2.5 rounded-xl glass-panel text-xs font-bold text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/10 transition-colors">
-                            Try Next Scenario
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- SECTION 6: PEER PRESSURE SELF-CHECK QUIZ -->
-        <section id="quiz" class="py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto relative">
-            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-white/15 relative overflow-hidden shadow-2xl">
-                
-                <div class="text-center max-w-2xl mx-auto mb-10">
-                    <span class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                        Self-Assessment Tool
-                    </span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">
-                        Peer Autonomy Index
-                    </h2>
-                    <p class="text-slate-400 text-xs sm:text-sm mt-2">
-                        Answer 5 quick questions to evaluate how effectively you manage peer influences.
-                    </p>
-                </div>
-
-                <!-- Quiz Progress Bar -->
-                <div class="w-full bg-slate-800/80 rounded-full h-2 mb-8 border border-white/5 overflow-hidden">
-                    <div id="quizProgressBar" class="bg-gradient-to-r from-cyan-400 to-purple-500 h-full w-0 transition-all duration-300"></div>
-                </div>
-
-                <!-- Quiz Form Container -->
-                <div id="quizContainer" class="space-y-6">
-                    
-                    <!-- Question 1 -->
-                    <div class="glass-panel p-6 rounded-2xl border border-white/5 space-y-3">
-                        <p class="font-semibold text-sm text-white flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 text-xs flex items-center justify-center font-bold">1</span>
-                            How often do you make decisions solely because your friends are doing it?
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-cyan-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q1" value="3" onclick="updateQuizProgress()" class="accent-cyan-400"> Rarely / Never
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-cyan-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q1" value="2" onclick="updateQuizProgress()" class="accent-cyan-400"> Sometimes
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-cyan-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q1" value="1" onclick="updateQuizProgress()" class="accent-cyan-400"> Frequently
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Question 2 -->
-                    <div class="glass-panel p-6 rounded-2xl border border-white/5 space-y-3">
-                        <p class="font-semibold text-sm text-white flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-xs flex items-center justify-center font-bold">2</span>
-                            Do you feel comfortable expressing a different opinion than your group?
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-purple-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q2" value="3" onclick="updateQuizProgress()" class="accent-purple-400"> Very Comfortable
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-purple-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q2" value="2" onclick="updateQuizProgress()" class="accent-purple-400"> Slightly Anxious
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-purple-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q2" value="1" onclick="updateQuizProgress()" class="accent-purple-400"> Extremely Hard
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Question 3 -->
-                    <div class="glass-panel p-6 rounded-2xl border border-white/5 space-y-3">
-                        <p class="font-semibold text-sm text-white flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-full bg-pink-500/20 text-pink-400 text-xs flex items-center justify-center font-bold">3</span>
-                            Have you pre-set personal boundaries before going out to social events?
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-pink-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q3" value="3" onclick="updateQuizProgress()" class="accent-pink-400"> Always
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-pink-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q3" value="2" onclick="updateQuizProgress()" class="accent-pink-400"> Occasionally
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-pink-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q3" value="1" onclick="updateQuizProgress()" class="accent-pink-400"> Never
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Question 4 -->
-                    <div class="glass-panel p-6 rounded-2xl border border-white/5 space-y-3">
-                        <p class="font-semibold text-sm text-white flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-xs flex items-center justify-center font-bold">4</span>
-                            If a social media trend feels unsafe or unethical, how do you react?
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-blue-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q4" value="3" onclick="updateQuizProgress()" class="accent-blue-400"> Ignore / Reject It
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-blue-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q4" value="2" onclick="updateQuizProgress()" class="accent-blue-400"> Hesitate but Watch
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-blue-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q4" value="1" onclick="updateQuizProgress()" class="accent-blue-400"> Join for Likes
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Question 5 -->
-                    <div class="glass-panel p-6 rounded-2xl border border-white/5 space-y-3">
-                        <p class="font-semibold text-sm text-white flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center font-bold">5</span>
-                            Do you have at least one trusted friend or adult you can turn to under pressure?
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-emerald-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q5" value="3" onclick="updateQuizProgress()" class="accent-emerald-400"> Yes, Absolutely
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-emerald-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q5" value="2" onclick="updateQuizProgress()" class="accent-emerald-400"> Unsure
-                            </label>
-                            <label class="p-3 rounded-xl glass-panel border border-white/10 hover:border-emerald-400 cursor-pointer text-xs text-slate-300 flex items-center gap-2">
-                                <input type="radio" name="q5" value="1" onclick="updateQuizProgress()" class="accent-emerald-400"> No
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Calculate Button -->
-                    <button onclick="calculateQuizScore()" class="w-full py-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:shadow-lg hover:shadow-purple-500/30 transition-all">
-                        Calculate Autonomy Score
-                    </button>
-
-                </div>
-
-                <!-- Quiz Results Display -->
-                <div id="quizResult" class="hidden text-center space-y-6 pt-4">
-                    <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-3xl font-extrabold text-white shadow-xl glow-purple" id="scoreDisplay">
-                        15/15
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-2" id="scoreTitle">High Peer Autonomy</h3>
-                        <p class="text-slate-300 text-xs sm:text-sm max-w-lg mx-auto leading-relaxed" id="scoreDesc">
-                            You possess a strong personal compass and clear boundaries. You navigate peer groups with confidence and choose positive influences intentionally.
-                        </p>
-                    </div>
-                    <button onclick="resetQuiz()" class="px-6 py-2.5 rounded-xl glass-panel text-xs font-bold text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/10">
-                        Retake Assessment
-                    </button>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-
-    <!-- DEDICATED TRIBUTE FOOTER FOR MR. MOHAMMAD FAKIH -->
-    <footer class="relative z-10 border-t border-white/10 bg-navy-950/90 backdrop-blur-xl pt-16 pb-12 px-4 sm:px-6 lg:px-8 mt-24">
-        <div class="max-w-7xl mx-auto space-y-12">
-            
-            <!-- Dedicated Honors Tribute Banner -->
-            <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-purple-500/40 bg-gradient-to-r from-purple-900/30 via-navy-900/60 to-cyan-900/30 relative overflow-hidden shadow-2xl">
-                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-                <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-center md:text-left">
-                    <div class="flex flex-col sm:flex-row items-center gap-5">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-500 via-purple-500 to-pink-500 p-0.5 shrink-0 shadow-xl">
-                            <div class="w-full h-full bg-navy-950 rounded-[14px] flex items-center justify-center">
-                                <i data-lucide="award" class="w-8 h-8 text-cyan-400"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="text-[10px] font-bold tracking-widest uppercase text-cyan-400">Special Educational Dedication</span>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1">
-                                Designed under the guidance of <span class="text-gradient-hero">Mr. Mohammad Fakih</span>
-                            </h3>
-                            <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl leading-relaxed">
-                                Dedicated with deep gratitude for inspiring leadership, mentorship, and empowering students to think critically and lead with confidence.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="shrink-0">
-                        <div class="px-5 py-2.5 rounded-full glass-panel border border-cyan-500/40 text-xs font-bold text-cyan-300 tracking-wider uppercase flex items-center gap-2">
-                            <i data-lucide="heart" class="w-4 h-4 text-pink-500 fill-pink-500"></i>
-                            <span>Honorary Recognition</span>
-                        </div>
-                    </div>
-                </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 2: MY BOOKINGS (CUSTOMER) ==================== -->
+    <div id="view-my-bookings" class="hidden space-y-6">
+      <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+        <div>
+          <h2 class="text-3xl font-black text-white flex items-center gap-3">
+            <i class="fa-solid fa-calendar-check text-brand-neon"></i> سجل حجوزاتي الشخصية
+          </h2>
+          <p class="text-xs text-gray-400 mt-1">تابع مواعيد حجوزاتك وحالتها فورًا بالتواصل مع أصحاب الملاعب</p>
+        </div>
+      </div>
+
+      <div id="customer-bookings-list" class="space-y-4">
+        <!-- Dynamic Content rendered by JS -->
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 3: COURT OWNER DASHBOARD ==================== -->
+    <div id="view-owner-dashboard" class="hidden space-y-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-brand-card p-6 rounded-2xl border border-brand-cardBorder">
+        <div>
+          <h2 class="text-3xl font-black text-white flex items-center gap-3">
+            <i class="fa-solid fa-building-user text-brand-neon"></i> لوحة تحكّم صاحب الملعب
+          </h2>
+          <p class="text-gray-400 text-sm mt-1">أضف ملاعبك، حدد الأسعار وأوقات العمل، وتابع الحجوزات القادمة</p>
+        </div>
+        <button onclick="openModal('add-court-modal')" class="bg-gradient-to-r from-brand-neon to-green-500 hover:from-green-400 hover:to-brand-neon text-black font-black px-6 py-3 rounded-xl shadow-lg neon-glow transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-plus-circle text-lg"></i> إضافة ملعب جديد للمنصة
+        </button>
+      </div>
+
+      <!-- OWNER COURTS MANAGEMENT -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-list-check text-brand-neon"></i> ملاعبي المسجّلة
+        </h3>
+        <div id="owner-courts-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- OWNER BOOKINGS TIMETABLE & LIST -->
+      <div class="glass-panel p-6 rounded-2xl border border-brand-neon/20 space-y-4">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-clock-rotate-left text-brand-neon"></i> الحجوزات الواردة لملاعبي
+        </h3>
+        <div id="owner-bookings-table" class="overflow-x-auto">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 4: SUPER ADMIN DASHBOARD ==================== -->
+    <div id="view-admin-dashboard" class="hidden space-y-8">
+      <!-- Admin Header -->
+      <div class="bg-gradient-to-r from-slate-900 via-emerald-950 to-black p-6 rounded-3xl border border-brand-gold/40 shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-yellow-400 border border-yellow-500/30 mb-2">
+            <i class="fa-solid fa-crown text-yellow-400"></i> الصلاحية الكاملة - المدير العام
+          </span>
+          <h2 class="text-3xl font-black text-white">إدارة منصة ملاعب لبنان بالكامل</h2>
+          <p class="text-xs text-gray-300 mt-1">الموافقة على الملاعب، تحديد العمولات، متابعة الحجوزات والتعاملات</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="https://wa.me/96181934766" target="_blank" class="bg-green-600 hover:bg-green-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition">
+            <i class="fa-brands fa-whatsapp text-lg"></i> مركز التواصل الإداري: 81934766
+          </a>
+        </div>
+      </div>
+
+      <!-- METRICS CARDS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-brand-card p-5 rounded-2xl border border-brand-cardBorder">
+          <p class="text-xs text-gray-400 font-bold">إجمالي الملاعب بالمنصة</p>
+          <h4 id="admin-stat-courts" class="text-3xl font-black text-white mt-2">0</h4>
+          <span class="text-xs text-brand-neon mt-1 inline-block"><i class="fa-solid fa-futbol"></i> كرة قدم وبادل</span>
+        </div>
+        <div class="bg-brand-card p-5 rounded-2xl border border-brand-cardBorder">
+          <p class="text-xs text-gray-400 font-bold">ملاعب بانتظار الموافقة</p>
+          <h4 id="admin-stat-pending" class="text-3xl font-black text-yellow-400 mt-2">0</h4>
+          <span class="text-xs text-yellow-500 mt-1 inline-block"><i class="fa-solid fa-hourglass-half"></i> تتطلب مراجعة Admin</span>
+        </div>
+        <div class="bg-brand-card p-5 rounded-2xl border border-brand-cardBorder">
+          <p class="text-xs text-gray-400 font-bold">إجمالي الحجوزات المؤكدة</p>
+          <h4 id="admin-stat-bookings" class="text-3xl font-black text-emerald-400 mt-2">0</h4>
+          <span class="text-xs text-emerald-500 mt-1 inline-block"><i class="fa-solid fa-circle-check"></i> حجوزات نشطة</span>
+        </div>
+        <div class="bg-brand-card p-5 rounded-2xl border border-brand-cardBorder">
+          <p class="text-xs text-gray-400 font-bold">نسبة عمولة المنصة المعتمدة</p>
+          <div class="flex items-center gap-2 mt-2">
+            <input type="number" id="admin-commission-input" value="10" min="0" max="50" class="w-20 bg-slate-900 border border-brand-neon/40 text-brand-neon font-black text-xl rounded-xl px-2 py-1 text-center">
+            <span class="text-white font-bold">%</span>
+            <button onclick="updateCommissionRate()" class="bg-brand-neon text-black text-xs font-black px-3 py-1.5 rounded-xl hover:bg-emerald-400 transition">حفظ</button>
+          </div>
+          <span class="text-xs text-gray-400 mt-1 inline-block">تُحسب على كل حجز إلكتروني</span>
+        </div>
+      </div>
+
+      <!-- PENDING COURTS FOR APPROVAL -->
+      <div class="glass-panel p-6 rounded-2xl border border-brand-neon/20 space-y-4">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-user-check text-yellow-400"></i> طلبات إضافة الملاعب الجديدة (بانتظار موافقتك)
+        </h3>
+        <div id="admin-pending-courts" class="space-y-4">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- ALL COURTS MANAGEMENT BY ADMIN -->
+      <div class="glass-panel p-6 rounded-2xl border border-brand-neon/20 space-y-4">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-sliders text-brand-neon"></i> التحكم الشامل بكافة الملاعب المسجلة
+        </h3>
+        <div id="admin-all-courts-table" class="overflow-x-auto">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-black border-t border-brand-neon/20 text-gray-400 text-sm py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brand-neon text-black font-black flex items-center justify-center">
+          <i class="fa-solid fa-futbol"></i>
+        </div>
+        <span class="font-bold text-white">منصة كورة &amp; بادل لبنان 🇱🇧 - جميع الحقوق محفوظة &copy; 2026</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://wa.me/96181934766" target="_blank" class="hover:text-brand-neon transition flex items-center gap-1">
+          <i class="fa-brands fa-whatsapp text-lg"></i> التواصل عبر واتساب: 81934766
+        </a>
+        <button onclick="openModal('deployment-modal')" class="hover:text-yellow-400 transition text-xs border border-gray-800 px-3 py-1.5 rounded-lg">
+          <i class="fa-solid fa-server ml-1"></i> دليل استضافة الموقع ونشره
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS SECTION ==================== -->
+
+  <!-- MODAL 1: BOOKING & TIME SLOT SELECTION -->
+  <div id="booking-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card w-full max-w-2xl rounded-3xl border border-brand-neon/40 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+      <!-- Modal Header -->
+      <div class="p-6 bg-slate-900 border-b border-gray-800 flex justify-between items-center">
+        <div>
+          <h3 id="modal-court-name" class="text-2xl font-black text-white">حجز الملعب</h3>
+          <p id="modal-court-meta" class="text-xs text-brand-neon font-bold mt-1"></p>
+        </div>
+        <button onclick="closeModal('booking-modal')" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto space-y-6 flex-grow">
+        <!-- Date Selection -->
+        <div>
+          <label class="block text-sm font-bold text-gray-300 mb-2"><i class="fa-solid fa-calendar-days text-brand-neon ml-1"></i> اختر تاريخ الحجز</label>
+          <input type="date" id="booking-date-input" onchange="updateAvailableTimeSlots()" class="w-full bg-slate-900 text-white border border-gray-700 focus:border-brand-neon rounded-xl px-4 py-3 text-sm font-bold focus:outline-none">
+        </div>
+
+        <!-- Available Hours Grid -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-sm font-bold text-gray-300"><i class="fa-solid fa-clock text-brand-neon ml-1"></i> اختر الساعة المتاحة (مدة الحجز: 1 ساعة)</label>
+            <span class="text-xs text-gray-400">الساعات الحمراء محجوزة سابقاً</span>
+          </div>
+          <div id="time-slots-container" class="grid grid-cols-3 sm:grid-cols-4 gap-2.5">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Price Summary Box -->
+        <div class="bg-slate-900 p-4 rounded-2xl border border-brand-neon/20 space-y-2 text-sm">
+          <div class="flex justify-between text-gray-400">
+            <span>سعر الساعة:</span>
+            <span id="summary-hourly-price" class="font-bold text-white">$0</span>
+          </div>
+          <div class="flex justify-between text-gray-400">
+            <span>خصم مباشر:</span>
+            <span id="summary-discount" class="font-bold text-emerald-400">$0</span>
+          </div>
+          <div class="flex justify-between text-base font-black text-white border-t border-gray-800 pt-2">
+            <span>المبلغ الإجمالي المطلـوب:</span>
+            <span id="summary-total-price" class="text-brand-neon font-black text-xl">$0</span>
+          </div>
+        </div>
+
+        <!-- Booking Note/Phone -->
+        <div>
+          <label class="block text-xs font-bold text-gray-300 mb-1">اسم الحاجز ورقم الهاتف للتأكيد</label>
+          <input type="text" id="booking-customer-name" placeholder="أدخل اسمك الكامل ورقم هاتفك" class="w-full bg-slate-900 text-white border border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:border-brand-neon focus:outline-none">
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-6 bg-slate-900 border-t border-gray-800 flex flex-col sm:flex-row gap-3">
+        <button id="confirm-booking-btn" onclick="executeBooking()" class="flex-grow bg-gradient-to-r from-brand-neon to-green-500 hover:from-green-400 hover:to-brand-neon text-black font-black py-3 rounded-xl shadow-lg neon-glow transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-check-circle text-lg"></i> تأكيد الحجز ومراسلة صاحب الملعب
+        </button>
+        <button onclick="closeModal('booking-modal')" class="bg-slate-800 hover:bg-slate-700 text-gray-300 font-bold px-6 py-3 rounded-xl transition">
+          إلغاء
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: ADD NEW COURT (OWNER) -->
+  <div id="add-court-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card w-full max-w-2xl rounded-3xl border border-brand-neon/40 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+      <div class="p-6 bg-slate-900 border-b border-gray-800 flex justify-between items-center">
+        <h3 class="text-2xl font-black text-white"><i class="fa-solid fa-plus text-brand-neon ml-2"></i> إضافة ملعب جديد في لبنان</h3>
+        <button onclick="closeModal('add-court-modal')" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form id="add-court-form" onsubmit="handleAddCourt(event)" class="p-6 overflow-y-auto space-y-4 flex-grow">
+        <div>
+          <label class="block text-xs font-bold text-gray-300 mb-1">اسم الملعب</label>
+          <input type="text" id="new-court-name" required placeholder="مثال: ملعب الأبطال - Champs Padel Beirut" class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-300 mb-1">نوع الرياضة</label>
+            <select id="new-court-type" class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+              <option value="FOOTBALL">كرة قدم (Football)</option>
+              <option value="PADEL">بادل (Padel)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-300 mb-1">المنطقة في لبنان</label>
+            <select id="new-court-region" class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+              <option value="بيروت">بيروت (Beirut)</option>
+              <option value="المتن">المتن وكسروان (Metn / Keserwan)</option>
+              <option value="طرابلس">طرابلس (Tripoli)</option>
+              <option value="صيدا">صيدا (Saida)</option>
+              <option value="صور">صور (Tyre)</option>
+              <option value="زحلة">زحلة (Zahle)</option>
+              <option value="عالية">عاليه (Aley)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-300 mb-1">العنوان التفصيلي</label>
+          <input type="text" id="new-court-address" required placeholder="مثال: بيروت - الجناح بالقرب من المدينة الرياضية" class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-300 mb-1">سعر الساعة ($ USD)</label>
+            <input type="number" id="new-court-price" min="5" required placeholder="مثال: 35" class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-300 mb-1">رقم واتساب صاحب الملعب (للحجوزات)</label>
+            <input type="text" id="new-court-phone" required placeholder="مثال: 03123456" class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-300 mb-1">رابط صورة الملعب (URL)</label>
+          <input type="url" id="new-court-image" placeholder="https://images.unsplash.com/..." class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+          <p class="text-[10px] text-gray-500 mt-1">يمكنك ترك الحقل فارغاً لاستخدام صورة افتراضية عالية الجودة</p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-300 mb-1">المميزات والتسهيلات (افصل بينها بفواصل)</label>
+          <input type="text" id="new-court-facilities" placeholder="إضاءة ليلاً, موقف سيارات, غرف تبديل, كافيه, إعارة مضارب" class="w-full bg-slate-900 text-white rounded-xl px-4 py-2.5 text-sm border border-gray-700 focus:border-brand-neon focus:outline-none">
+        </div>
+
+        <div class="p-6 bg-slate-900 border-t border-gray-800 flex gap-3">
+          <button type="submit" class="flex-grow bg-brand-neon text-black font-black py-3 rounded-xl hover:bg-emerald-400 transition">
+            حفظ وإرسال للمدير العام للموافقة
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: ROLE SWITCHER FOR EASY DEMO TESTING -->
+  <div id="role-switcher-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card w-full max-w-md rounded-3xl border border-brand-neon/40 shadow-2xl p-6 space-y-6">
+      <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+        <h3 class="text-xl font-black text-white flex items-center gap-2">
+          <i class="fa-solid fa-users-gear text-brand-neon"></i> تبديل الحساب والأنماط
+        </h3>
+        <button onclick="closeModal('role-switcher-modal')" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <p class="text-xs text-gray-300 leading-relaxed">
+        قم باختيار الحساب الذي تريد تجربة المنصة من خلاله لمشاهدة جميع الصلاحيات التفاعلية بكل سهولة:
+      </p>
+
+      <div class="space-y-3">
+        <button onclick="setUserRole('CUSTOMER', 'أحمد زهران (زبون)', 'customer@lebanon.com')" class="w-full p-4 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-emerald-500/30 flex items-center gap-3 transition text-right">
+          <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-sm">حساب زبون (Customer)</h4>
+            <p class="text-xs text-gray-400">البحث، مشاهدة الساعات المتاحة، والحجز الفوري</p>
+          </div>
+        </button>
+
+        <button onclick="setUserRole('OWNER', 'سامي الحسامي (صاحب ملعب)', 'owner@lebanon.com')" class="w-full p-4 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-brand-neon/30 flex items-center gap-3 transition text-right">
+          <div class="w-10 h-10 rounded-full bg-brand-neon/20 text-brand-neon flex items-center justify-center font-bold">
+            <i class="fa-solid fa-building-user"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-sm">حساب صاحب ملعب (Court Owner)</h4>
+            <p class="text-xs text-gray-400">إضافة ملعبك، تعديل الأسعار، ومتابعة حجوزاتك</p>
+          </div>
+        </button>
+
+        <button onclick="setUserRole('ADMIN', 'المدير العام للموقع (Super Admin)', 'admin@lebanon.com')" class="w-full p-4 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-yellow-500/40 flex items-center gap-3 transition text-right">
+          <div class="w-10 h-10 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-sm">حساب المدير العام (Super Admin)</h4>
+            <p class="text-xs text-gray-400">الموافقة على الملاعب، التحكم بالنسبة، وإدارة الحسابات</p>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: DEPLOYMENT & SCALABILITY GUIDE -->
+  <div id="deployment-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card w-full max-w-3xl rounded-3xl border border-yellow-500/40 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+      <div class="p-6 bg-slate-900 border-b border-gray-800 flex justify-between items-center">
+        <h3 class="text-xl font-black text-white flex items-center gap-2">
+          <i class="fa-solid fa-server text-yellow-400"></i> دليل التشغيل، النشر، وربط قاعدة البيانات الكاملة
+        </h3>
+        <button onclick="closeModal('deployment-modal')" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-6 text-sm text-gray-300 flex-grow">
+        <div class="bg-slate-900 p-4 rounded-xl border border-yellow-500/20">
+          <h4 class="font-bold text-yellow-400 text-base mb-2"><i class="fa-solid fa-rocket ml-1"></i> النشر المباشر الحالي</h4>
+          <p>هذا الملف هو تطبيق متكامل وقابل للعمل فورًا في المتصفح، يعتمد على تخزين مدمج ذكي يمنع تضارب الحجوزات مع خيارات تحكّم كاملة للمدير العام وصاحب الملعب.</p>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="font-bold text-white text-base border-b border-gray-800 pb-2">خطوات الرفع على السيرفر (Production Ready Stack):</h4>
+          
+          <div class="space-y-2">
+            <p class="font-bold text-brand-neon">1. تحويل Backend إلى Express.js + PostgreSQL / Firebase:</p>
+            <pre class="bg-black/80 p-3 rounded-xl border border-gray-800 text-xs text-green-400 font-mono overflow-x-auto">
+// Example Backend Route to prevent Double Booking
+app.post('/api/bookings', async (req, res) => {
+  const { courtId, date, timeSlot } = req.body;
+  const existing = await db.query(
+    'SELECT * FROM bookings WHERE court_id = $1 AND date = $2 AND time_slot = $3 AND status = $4',
+    [courtId, date, timeSlot, 'CONFIRMED']
+  );
+  if (existing.rows.length > 0) {
+    return res.status(400).json({ error: 'عذراً، التوقيت محجوز مسبقاً!' });
+  }
+  // Insert Booking...
+});</pre>
+          </div>
+
+          <div class="space-y-2">
+            <p class="font-bold text-brand-neon">2. استضافة المنصة مجانًا على Vercel أو Netlify:</p>
+            <ul class="list-disc list-inside text-xs text-gray-400 space-y-1 pr-2">
+              <li>قم برفع هذا الملف (`index.html`) إلى مستودع GitHub.</li>
+              <li>قم بربط المستودع بموقع <strong class="text-white">Vercel.com</strong> أو <strong class="text-white">Netlify.com</strong>.</li>
+              <li>سيكون الموقع جاهزاً ويعمل بنطاق مجاني أو نطاق خاص مثل (`www.kora-padel-lb.com`).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT APP LOGIC -->
+  <script>
+    // ==========================================
+    // INITIALIZATION & INITIAL STATE
+    // ==========================================
+    
+    // Default initial mock database if LocalStorage is empty
+    const INITIAL_COURTS = [
+      {
+        id: 'court-1',
+        name: 'ملعب الجناح الذهبي (Golden Arena Beirut)',
+        type: 'FOOTBALL',
+        region: 'بيروت',
+        address: 'بيروت - الجناح بالقرب من المطار القديم',
+        price: 40,
+        phone: '70123456',
+        ownerEmail: 'owner@lebanon.com',
+        image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80',
+        facilities: ['إضاءة LED دولية', 'عشب صناعي ممتاذ', 'موقف سيارات واسع', 'غرف تبديل ودش'],
+        discount: 10, // 10% discount
+        status: 'APPROVED'
+      },
+      {
+        id: 'court-2',
+        name: 'نادي سمك بادل كلوب (Smash Padel Lebanon)',
+        type: 'PADEL',
+        region: 'المتن',
+        address: 'الضبية - الأوتوستراد الساحلي',
+        price: 50,
+        phone: '03987654',
+        ownerEmail: 'owner@lebanon.com',
+        image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=800&q=80',
+        facilities: ['مضرب بادل احترافي', 'مكيف', 'كافيه ومشروبات', 'مدربين محترفين'],
+        discount: 0,
+        status: 'APPROVED'
+      },
+      {
+        id: 'court-3',
+        name: 'ملاعب الفيحاء الرياضية (North Football Stars)',
+        type: 'FOOTBALL',
+        region: 'طرابلس',
+        address: 'طرابلس - ضم وفرز بالقرب من معرض رشيد كرامي',
+        price: 30,
+        phone: '71554433',
+        ownerEmail: 'north_owner@lebanon.com',
+        image: 'https://images.unsplash.com/photo-1529900748604-07564a03e7a6?auto=format&fit=crop&w=800&q=80',
+        facilities: ['كرة جديدة', 'حمامات نظيفة', 'كافيتريا'],
+        discount: 5,
+        status: 'APPROVED'
+      },
+      {
+        id: 'court-4',
+        name: 'صيدا بادل سنتر (Saida Padel Arena)',
+        type: 'PADEL',
+        region: 'صيدا',
+        address: 'صيدا - الكورنيش الساحلي',
+        price: 35,
+        phone: '03112233',
+        ownerEmail: 'south_owner@lebanon.com',
+        image: 'https://images.unsplash.com/photo-1626248801379-51a0748a5f96?auto=format&fit=crop&w=800&q=80',
+        facilities: ['منظر على البحر', 'إضاءة احترافية', 'مواقف مجانية'],
+        discount: 0,
+        status: 'PENDING' // Pending admin approval
+      }
+    ];
+
+    const INITIAL_BOOKINGS = [
+      {
+        id: 'b-101',
+        courtId: 'court-1',
+        courtName: 'ملعب الجناح الذهبي (Golden Arena Beirut)',
+        customerName: 'أحمد زهران',
+        customerPhone: '76112233',
+        date: new Date().toISOString().split('T')[0], // Today
+        timeSlot: '18:00 - 19:00',
+        totalPrice: 36,
+        status: 'CONFIRMED',
+        createdAt: new Date().toISOString()
+      }
+    ];
+
+    // LocalStorage Helper
+    function getStoredData(key, fallback) {
+      const data = localStorage.getItem(key);
+      return data ? JSON.parse(data) : fallback;
+    }
+
+    function setStoredData(key, data) {
+      localStorage.setItem(key, JSON.stringify(data));
+    }
+
+    // Global App State
+    let courts = getStoredData('kp_courts', INITIAL_COURTS);
+    let bookings = getStoredData('kp_bookings', INITIAL_BOOKINGS);
+    let commissionRate = getStoredData('kp_commission', 10);
+    
+    // Active User State (Default as Customer)
+    let currentUser = getStoredData('kp_user', {
+      role: 'CUSTOMER',
+      name: 'أحمد زهران (زبون)',
+      email: 'customer@lebanon.com'
+    });
+
+    let selectedCourtForBooking = null;
+    let selectedTimeSlot = null;
+
+    // ==========================================
+    // APP STARTUP & EVENT LISTENERS
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      renderUserStatus();
+      renderCourtsGrid();
+      renderCustomerBookings();
+      renderOwnerDashboard();
+      renderAdminDashboard();
+
+      // Set default date picker to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('booking-date-input').value = today;
+      document.getElementById('booking-date-input').min = today;
+    });
+
+    // Save helpers
+    function saveState() {
+      setStoredData('kp_courts', courts);
+      setStoredData('kp_bookings', bookings);
+      setStoredData('kp_commission', commissionRate);
+    }
+
+    // Tab Switcher Logic
+    function switchTab(tabId) {
+      const views = ['browse', 'my-bookings', 'owner-dashboard', 'admin-dashboard'];
+      views.forEach(v => {
+        document.getElementById(`view-${v}`).classList.add('hidden');
+        const btn = document.getElementById(`nav-${v}`);
+        if(btn) {
+          btn.classList.remove('bg-brand-neon', 'text-black', 'shadow-lg');
+          btn.classList.add('text-gray-300');
+        }
+      });
+
+      document.getElementById(`view-${tabId}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`nav-${tabId}`);
+      if(activeBtn) {
+        activeBtn.classList.add('bg-brand-neon', 'text-black', 'shadow-lg');
+        activeBtn.classList.remove('text-gray-300');
+      }
+    }
+
+    // Modal Handlers
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    // ==========================================
+    // AUTHENTICATION & ROLE SWITCHING
+    // ==========================================
+    function setUserRole(role, name, email) {
+      currentUser = { role, name, email };
+      setStoredData('kp_user', currentUser);
+      renderUserStatus();
+      closeModal('role-switcher-modal');
+
+      // Auto redirect based on role for seamless testing
+      if (role === 'ADMIN') switchTab('admin-dashboard');
+      else if (role === 'OWNER') switchTab('owner-dashboard');
+      else switchTab('browse');
+    }
+
+    function renderUserStatus() {
+      const container = document.getElementById('user-status-container');
+      let badgeColor = 'text-brand-neon';
+      let roleText = 'زبون';
+      
+      if (currentUser.role === 'ADMIN') {
+        badgeColor = 'text-yellow-400 font-bold';
+        roleText = 'مدير عام';
+      } else if (currentUser.role === 'OWNER') {
+        badgeColor = 'text-emerald-400 font-bold';
+        roleText = 'صاحب ملعب';
+      }
+
+      container.innerHTML = `
+        <div class="w-2.5 h-2.5 rounded-full bg-brand-neon animate-pulse"></div>
+        <div class="text-right">
+          <p class="text-xs text-white font-bold">${currentUser.name}</p>
+          <p class="text-[10px] ${badgeColor}">${roleText}</p>
+        </div>
+      `;
+    }
+
+    // ==========================================
+    // VIEW 1: COURTS BROWSING & FILTERS
+    // ==========================================
+    function applyFilters() {
+      renderCourtsGrid();
+    }
+
+    function resetFilters() {
+      document.getElementById('filter-region').value = 'ALL';
+      document.getElementById('filter-type').value = 'ALL';
+      document.getElementById('filter-search').value = '';
+      renderCourtsGrid();
+    }
+
+    function renderCourtsGrid() {
+      const grid = document.getElementById('courts-grid');
+      const regionFilter = document.getElementById('filter-region').value;
+      const typeFilter = document.getElementById('filter-type').value;
+      const searchFilter = document.getElementById('filter-search').value.toLowerCase();
+
+      // Filter only APPROVED courts for customers
+      const approvedCourts = courts.filter(c => c.status === 'APPROVED');
+
+      const filtered = approvedCourts.filter(court => {
+        const matchesRegion = regionFilter === 'ALL' || court.region === regionFilter;
+        const matchesType = typeFilter === 'ALL' || court.type === typeFilter;
+        const matchesSearch = court.name.toLowerCase().includes(searchFilter) || court.address.toLowerCase().includes(searchFilter);
+        return matchesRegion && matchesType && matchesSearch;
+      });
+
+      document.getElementById('courts-count-badge').textContent = `${filtered.length} ملعب`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 glass-panel rounded-3xl border border-gray-800">
+            <i class="fa-solid fa-futbol text-4xl text-gray-600 mb-3"></i>
+            <h4 class="text-lg font-bold text-gray-300">لم يتم العثور على ملاعب مطابقة</h4>
+            <p class="text-xs text-gray-500 mt-1">جرب تغيير الفلاتر أو البحث عن منطقة أخرى في لبنان</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(court => {
+        const finalPrice = court.discount > 0 ? court.price * (1 - court.discount / 100) : court.price;
+        const typeBadge = court.type === 'FOOTBALL' 
+          ? `<span class="bg-emerald-500/20 text-emerald-400 text-xs px-2.5 py-1 rounded-full font-bold border border-emerald-500/30"><i class="fa-solid fa-futbol ml-1"></i> كرة قدم</span>`
+          : `<span class="bg-amber-500/20 text-yellow-400 text-xs px-2.5 py-1 rounded-full font-bold border border-yellow-500/30"><i class="fa-solid fa-table-tennis-paddle-ball ml-1"></i> بادل (Padel)</span>`;
+
+        return `
+          <div class="bg-brand-card rounded-3xl border border-brand-cardBorder overflow-hidden hover:border-brand-neon/60 transition-all duration-300 flex flex-col group">
+            <!-- Court Image Header -->
+            <div class="relative h-48 overflow-hidden bg-slate-900">
+              <img src="${court.image}" alt="${court.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80'">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+              
+              <div class="absolute top-3 right-3 flex gap-2">
+                ${typeBadge}
+              </div>
+              <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-bold text-gray-200">
+                <i class="fa-solid fa-location-dot text-brand-neon ml-1"></i> ${court.region}
+              </div>
             </div>
 
-            <!-- Footer Links Columns -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pt-8 border-t border-white/5 text-xs text-slate-400">
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2 text-white font-bold text-sm">
-                        <i data-lucide="shield-check" class="w-5 h-5 text-cyan-400"></i>
-                        INFLUENCE LAB
-                    </div>
-                    <p class="leading-relaxed">
-                        An elite interactive educational web app crafted to help teenagers master social dynamics and make autonomous choices.
-                    </p>
-                </div>
+            <!-- Content Body -->
+            <div class="p-5 flex-grow space-y-4">
+              <div>
+                <h4 class="text-lg font-black text-white group-hover:text-brand-neon transition">${court.name}</h4>
+                <p class="text-xs text-gray-400 mt-1 line-clamp-1"><i class="fa-solid fa-map-pin ml-1"></i> ${court.address}</p>
+              </div>
 
+              <!-- Facilities list -->
+              <div class="flex flex-wrap gap-1.5">
+                ${court.facilities.map(f => `<span class="text-[10px] bg-slate-800 text-gray-300 px-2 py-0.5 rounded-md border border-gray-700">${f}</span>`).join('')}
+              </div>
+
+              <!-- Pricing Info -->
+              <div class="flex justify-between items-end border-t border-gray-800/80 pt-3">
                 <div>
-                    <h5 class="font-bold text-white uppercase tracking-wider mb-3">Learning Modules</h5>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="hover:text-cyan-400 transition-colors">What is Peer Pressure?</a></li>
-                        <li><a href="#types" class="hover:text-cyan-400 transition-colors">5 Core Types</a></li>
-                        <li><a href="#drivers" class="hover:text-cyan-400 transition-colors">Psychological Drivers</a></li>
-                        <li><a href="#matrix" class="hover:text-cyan-400 transition-colors">Influence Matrix</a></li>
-                    </ul>
+                  <span class="text-[10px] text-gray-400">سعر الساعة الحالية</span>
+                  <div class="flex items-baseline gap-2">
+                    <span class="text-2xl font-black text-brand-neon">$${finalPrice.toFixed(0)}</span>
+                    ${court.discount > 0 ? `<span class="text-xs text-gray-500 line-through">$${court.price}</span>` : ''}
+                  </div>
                 </div>
-
-                <div>
-                    <h5 class="font-bold text-white uppercase tracking-wider mb-3">Interactive Tools</h5>
-                    <ul class="space-y-2">
-                        <li><a href="#simulator" class="hover:text-cyan-400 transition-colors">Scenario Simulator</a></li>
-                        <li><a href="#quiz" class="hover:text-cyan-400 transition-colors">Self-Check Quiz</a></li>
-                        <li><a href="#simulator" class="hover:text-cyan-400 transition-colors">Refusal Strategies</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h5 class="font-bold text-white uppercase tracking-wider mb-3">Dedication</h5>
-                    <p class="leading-relaxed mb-2">
-                        Created for excellence in educational web design.
-                    </p>
-                    <p class="text-cyan-400 font-bold">Dedicated to Mr. Mohammad Fakih</p>
-                </div>
+                ${court.discount > 0 ? `<span class="bg-red-500/20 text-red-400 text-xs px-2 py-0.5 rounded font-bold border border-red-500/30">خصم ${court.discount}%</span>` : ''}
+              </div>
             </div>
 
-            <!-- Bottom Credits -->
-            <div class="text-center text-xs text-slate-500 pt-8 border-t border-white/
+            <!-- Action Button -->
+            <div class="p-5 pt-0">
+              <button onclick="startBookingProcess('${court.id}')" class="w-full bg-slate-800 hover:bg-brand-neon hover:text-black text-white font-bold py-3 rounded-xl border border-brand-neon/30 transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-calendar-plus"></i> اختيار الموعد والحجز
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ==========================================
+    // BOOKING ENGINE & CONFLICT MANAGEMENT
+    // ==========================================
+    function startBookingProcess(courtId) {
+      selectedCourtForBooking = courts.find(c => c.id === courtId);
+      if(!selectedCourtForBooking) return;
+
+      document.getElementById('modal-court-name').textContent = selectedCourtForBooking.name;
+      document.getElementById('modal-court-meta').textContent = `${selectedCourtForBooking.type === 'FOOTBALL' ? 'كرة قدم' : 'بادل'} | ${selectedCourtForBooking.region} - ${selectedCourtForBooking.address}`;
+
+      const finalPrice = selectedCourtForBooking.discount > 0 ? selectedCourtForBooking.price * (1 - selectedCourtForBooking.discount / 100) : selectedCourtForBooking.price;
+      document.getElementById('summary-hourly-price').textContent = `$${selectedCourtForBooking.price}`;
+      document.getElementById('summary-discount').textContent = selectedCourtForBooking.discount > 0 ? `${selectedCourtForBooking.discount}%` : '$0';
+      document.getElementById('summary-total-price').textContent = `$${finalPrice.toFixed(0)}`;
+
+      selectedTimeSlot = null;
+      updateAvailableTimeSlots();
+      openModal('booking-modal');
+    }
+
+    function updateAvailableTimeSlots() {
+      const date = document.getElementById('booking-date-input').value;
+      const container = document.getElementById('time-slots-container');
+      if(!date || !selectedCourtForBooking) return;
+
+      // Available daily hours: 14:00 to 24:00
+      const standardHours = [
+        '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00', '17:00 - 18:00',
+        '18:00 - 19:00', '19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00',
+        '22:00 - 23:00', '23:00 - 24:00'
+      ];
+
+      // Find bookings for this court on this specific date
+      const existingBookings = bookings.filter(b => 
+        b.courtId === selectedCourtForBooking.id && 
+        b.date === date && 
+        b.status === 'CONFIRMED'
+      );
+
+      const bookedSlots = existingBookings.map(b => b.timeSlot);
+
+      container.innerHTML = standardHours.map(slot => {
+        const isBooked = bookedSlots.includes(slot);
+        const isSelected = selectedTimeSlot === slot;
+
+        if (isBooked) {
+          return `
+            <button disabled class="bg-red-950/40 text-red-400 border border-red-800/50 text-xs py-2.5 px-2 rounded-xl opacity-60 font-bold cursor-not-allowed flex flex-col items-center">
+              <span>${slot}</span>
+              <span class="text-[9px] text-red-500 font-normal">محجوز</span>
+            </button>
+          `;
+        } else {
+          return `
+            <button onclick="selectTimeSlot('${slot}')" class="${isSelected ? 'bg-brand-neon text-black font-black border-2 border-white shadow-lg neon-glow' : 'bg-slate-900 text-gray-200 border border-gray-700 hover:border-brand-neon'} text-xs py-2.5 px-2 rounded-xl font-bold transition flex flex-col items-center">
+              <span>${slot}</span>
+              <span class="text-[9px] ${isSelected ? 'text-black' : 'text-emerald-400'}">متاح</span>
+            </button>
+          `;
+        }
+      }).join('');
+    }
+
+    function selectTimeSlot(slot) {
+      selectedTimeSlot = slot;
+      updateAvailableTimeSlots();
+    }
+
+    function executeBooking() {
+      const date = document.getElementById('booking-date-input').value;
+      const customerInfo = document.getElementById('booking-customer-name').value.trim();
+
+      if (!date) {
+        alert('يرجى تحديد تاريخ الحجز');
+        return;
+      }
+      if (!selectedTimeSlot) {
+        alert('يرجى اختيار الساعة المتاحة من الجدول');
+        return;
+      }
+      if (!customerInfo) {
+        alert('يرجى أدخل اسمك الكامل ورقم الهاتف لتأكيد الحجز');
+        return;
+      }
+
+      // Final Real-Time Double Booking Conflict Check
+      const conflict = bookings.find(b => 
+        b.courtId === selectedCourtForBooking.id && 
+        b.date === date && 
+        b.timeSlot === selectedTimeSlot && 
+        b.status === 'CONFIRMED'
+      );
+
+      if (conflict) {
+        alert('عذراً، تضارب في التوقيت! تم حجز هذه الساعة قبل لحظات من قِبل زبون آخر.');
+        updateAvailableTimeSlots();
+        return;
+      }
+
+      const finalPrice = selectedCourtForBooking.discount > 0 ? selectedCourtForBooking.price * (1 - selectedCourtForBooking.discount / 100) : selectedCourtForBooking.price;
+
+      const newBooking = {
+        id: 'b-' + Date.now(),
+        courtId: selectedCourtForBooking.id,
+        courtName: selectedCourtForBooking.name,
+        customerName: customerInfo,
+        customerEmail: currentUser.email,
+        date: date,
+        timeSlot: selectedTimeSlot,
+        totalPrice: Math.round(finalPrice),
+        status: 'CONFIRMED',
+        createdAt: new Date().toISOString()
+      };
+
+      bookings.unshift(newBooking);
+      saveState();
+
+      closeModal('booking-modal');
+      renderCustomerBookings();
+      renderOwnerDashboard();
+      renderAdminDashboard();
+
+      // Open direct WhatsApp pre-filled booking confirmation to court owner/admin
+      const whatsappMsg = `مرحباً، أود تأكيد حجز ملعب كرة قدم/بادل:\n- الملعب: ${selectedCourtForBooking.name}\n- التاريخ: ${date}\n- الساعة: ${selectedTimeSlot}\n- الاسم ورقم التواصل: ${customerInfo}\n- المبلغ المطلـوب: $${Math.round(finalPrice)}`;
+      const targetPhone = selectedCourtForBooking.phone || '81934766';
+      window.open(`https://wa.me/961${targetPhone}?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
+    }
+
+    // ==========================================
+    // VIEW 2: CUSTOMER BOOKINGS HISTORY
+    // ==========================================
+    function renderCustomerBookings() {
+      const container = document.getElementById('customer-bookings-list');
+      const myBookings = bookings.filter(b => b.customerEmail === currentUser.email || currentUser.role === 'ADMIN');
+
+      if (myBookings.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 glass-panel rounded-3xl border border-gray-800">
+            <i class="fa-solid fa-ticket text-4xl text-gray-600 mb-3"></i>
+            <h4 class="text-lg font-bold text-gray-300">لا توجد حجوزات مسجلة حالياً</h4>
+            <p class="text-xs text-gray-500 mt-1">تصفح الملاعب المتاحة واختر التوقيت المناسب لحجز أول ملعب لك في لبنان</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = myBookings.map(b => `
+        <div class="bg-brand-card p-5 rounded-2xl border border-brand-cardBorder flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div class="space-y-1">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-neon/20 text-brand-neon border border-brand-neon/30">حجز مؤكد #CONFIRMED</span>
+            <h4 class="text-lg font-black text-white">${b.courtName}</h4>
+            <div class="flex flex-wrap gap-4 text-xs text-gray-400">
+              <span><i class="fa-solid fa-calendar text-brand-neon ml-1"></i> التاريخ: ${b.date}</span>
+              <span><i class="fa-solid fa-clock text-brand-neon ml-1"></i> الموعد: ${b.timeSlot}</span>
+              <span><i class="fa-solid fa-user text-brand-neon ml-1"></i> الحاجز: ${b.customerName}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 border-gray-800 pt-3 md:pt-0">
+            <div class="text-right">
+              <span class="text-[10px] text-gray-400 block">المبلغ المقدر</span>
+              <span class="text-xl font-black text-brand-neon">$${b.totalPrice}</span>
+            </div>
+            <button onclick="cancelBooking('${b.id}')" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-bold px-3 py-2 rounded-xl border border-red-500/30 transition">
+              إلغاء الحجز
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function cancelBooking(bookingId) {
+      if(confirm('هل أنت تأكد من إلغاء هذا الحجز؟')) {
+        bookings = bookings.filter(b => b.id !== bookingId);
+        saveState();
+        renderCustomerBookings();
+        renderCourtsGrid();
+        renderOwnerDashboard();
+        renderAdminDashboard();
+      }
+    }
+
+    // ==========================================
+    // VIEW 3: COURT OWNER MANAGEMENT
+    // ==========================================
+    function handleAddCourt(e) {
+      e.preventDefault();
+      const name = document.getElementById('new-court-name').value.trim();
+      const type = document.getElementById('new-court-type').value;
+      const region = document.getElementById('new-court-region').value;
+      const address = document.getElementById('new-court-address').value.trim();
+      const price = parseFloat(document.getElementById('new-court-price').value);
+      const phone = document.getElementById('new-court-phone').value.trim();
+      const image = document.getElementById('new-court-image').value.trim() || 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80';
+      const facilitiesRaw = document.getElementById('new-court-facilities').value.trim();
+      const facilities = facilitiesRaw ? facilitiesRaw.split(',').map(s => s.trim()) : ['إضاءة ليلاً', 'موقف سيارات'];
+
+      const newCourt = {
+        id: 'court-' + Date.now(),
+        name,
+        type,
+        region,
+        address,
+        price,
+        phone,
+        ownerEmail: currentUser.email,
+        image,
+        facilities,
+        discount: 0,
+        status: 'PENDING' // Requires Admin Approval
+      };
+
+      courts.push(newCourt);
+      saveState();
+
+      closeModal('add-court-modal');
+      alert('تم إرسال ملعبك بنجاح! سيتم رفعه على المنصة فور مراجعته والموافقة عليه من الإدارة العامة.');
+      renderOwnerDashboard();
+      renderAdminDashboard();
+    }
+
+    function renderOwnerDashboard() {
+      const ownerCourtsList = document.getElementById('owner-courts-list');
+      const ownerBookingsTable = document.getElementById('owner-bookings-table');
+
+      // Filter courts owned by logged in user (or all if admin)
+      const myCourts = currentUser.role === 'ADMIN' ? courts : courts.filter(c => c.ownerEmail === currentUser.email);
+
+      if(myCourts.length === 0) {
+        ownerCourtsList.innerHTML = `
+          <div class="col-span-full text-center py-8 glass-panel rounded-2xl border border-gray-800">
+            <p class="text-sm text-gray-400">لم تقم بتسجيل أي ملعب بعد. انقر على "إضافة ملعب جديد" للبدء في استقبال الحجوزات.</p>
+          </div>
+        `;
+      } else {
+        ownerCourtsList.innerHTML = myCourts.map(c => `
+          <div class="bg-slate-900 p-5 rounded-2xl border ${c.status === 'APPROVED' ? 'border-brand-neon/30' : 'border-yellow-500/30'} space-y-3">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded ${c.status === 'APPROVED' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-yellow-500/20 text-yellow-400'}">
+                  ${c.status === 'APPROVED' ? 'معتمد ومفعّل' : 'بانتظار موافقة الإدارة'}
+                </span>
+                <h4 class="text-base font-bold text-white mt-1">${c.name}</h4>
+              </div>
+              <span class="text-xs font-black text-brand-neon">$${c.price}/ساعة</span>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-800 pt-2">
+              <span>الخصم الحالي: <strong>${c.discount}%</strong></span>
+              <button onclick="setDiscountPrompt('${c.id}')" class="text-brand-neon hover:underline text-[11px]">تعديل العرض / الخصم</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render owner incoming bookings
+      const myCourtIds = myCourts.map(c => c.id);
+      const incomingBookings = bookings.filter(b => myCourtIds.includes(b.courtId));
+
+      if (incomingBookings.length === 0) {
+        ownerBookingsTable.innerHTML = `<p class="text-xs text-gray-500 text-center py-4">لا توجد حجوزات واردة لملاعبك حالياً</p>`;
+      } else {
+        ownerBookingsTable.innerHTML = `
+          <table class="w-full text-right text-xs text-gray-300">
+            <thead class="bg-slate-900 text-gray-400 uppercase text-[10px]">
+              <tr>
+                <th class="p-3">الملعب</th>
+                <th class="p-3">اسم الزبون والهاتف</th>
+                <th class="p-3">التاريخ والوقت</th>
+                <th class="p-3">المبلغ</th>
+                <th class="p-3">الحالة</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-800">
+              ${incomingBookings.map(b => `
+                <tr>
+                  <td class="p-3 font-bold text-white">${b.courtName}</td>
+                  <td class="p-3">${b.customerName}</td>
+                  <td class="p-3 text-brand-neon font-bold">${b.date} | ${b.timeSlot}</td>
+                  <td class="p-3 font-bold text-emerald-400">$${b.totalPrice}</td>
+                  <td class="p-3"><span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px]">مؤكد</span></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+    }
+
+    function setDiscountPrompt(courtId) {
+      const court = courts.find(c => c.id === courtId);
+      if(!court) return;
+      const discountVal = prompt(`أدخل نسبة الخصم المئوية لملعب (${court.name}):`, court.discount);
+      if (discountVal !== null) {
+        const parsed = parseInt(discountVal);
+        if(!isNaN(parsed) && parsed >= 0 && parsed <= 90) {
+          court.discount = parsed;
+          saveState();
+          renderCourtsGrid();
+          renderOwnerDashboard();
+        } else {
+          alert('نسبة خصم غير صالحة');
+        }
+      }
+    }
+
+    // ==========================================
+    // VIEW 4: SUPER ADMIN DASHBOARD
+    // ==========================================
+    function renderAdminDashboard() {
+      // Metric statistics
+      document.getElementById('admin-stat-courts').textContent = courts.length;
+      document.getElementById('admin-stat-pending').textContent = courts.filter(c => c.status === 'PENDING').length;
+      document.getElementById('admin-stat-bookings').textContent = bookings.length;
+      document.getElementById('admin-commission-input').value = commissionRate;
+
+      // Pending Courts List
+      const pendingContainer = document.getElementById('admin-pending-courts');
+      const pendingCourts = courts.filter(c => c.status === 'PENDING');
+
+      if (pendingCourts.length === 0) {
+        pendingContainer.innerHTML = `<p class="text-xs text-gray-500 py-2">لا توجد طلبات ملاعب معلقة حالياً</p>`;
+      } else {
+        pendingContainer.innerHTML = pendingCourts.map(c => `
+          <div class="bg-slate-900 p-4 rounded-xl border border-yellow-500/30 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+            <div>
+              <h4 class="font-bold text-white text-sm">${c.name} (${c.type === 'FOOTBALL' ? 'كرة قدم' : 'بادل'})</h4>
+              <p class="text-xs text-gray-400">${c.region} - ${c.address} | صاحب الملعب: ${c.ownerEmail}</p>
+              <p class="text-xs text-brand-neon font-bold mt-1">السعر المطلوب: $${c.price}/ساعة</p>
+            </div>
+            <div class="flex gap-2 w-full md:w-auto">
+              <button onclick="approveCourt('${c.id}')" class="bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-black px-4 py-2 rounded-xl transition flex-1 md:flex-none">
+                <i class="fa-solid fa-check ml-1"></i> موافقة وتفعيل
+              </button>
+              <button onclick="deleteCourt('${c.id}')" class="bg-red-500/20 hover:bg-red-500/30 text-red-400 text-xs font-bold px-3 py-2 rounded-xl border border-red-500/30 transition">
+                رفض وحذف
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // All Courts Master Table
+      const allCourtsTable = document.getElementById('admin-all-courts-table');
+      allCourtsTable.innerHTML = `
+        <table class="w-full text-right text-xs text-gray-300">
+          <thead class="bg-slate-900 text-gray-400 uppercase text-[10px]">
+            <tr>
+              <th class="p-3">اسم الملعب</th>
+              <th class="p-3">النوع والمنطقة</th>
+              <th class="p-3">السعر والتخفيض</th>
+              <th class="p-3">الحالة الحالية</th>
+              <th class="p-3">إجراءات الإدارة</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800">
+            ${courts.map(c => `
+              <tr>
+                <td class="p-3 font-bold text-white">${c.name}</td>
+                <td class="p-3">${c.type} (${c.region})</td>
+                <td class="p-3">$${c.price} (${c.discount}% خصم)</td>
+                <td class="p-3">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold ${c.status === 'APPROVED' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-yellow-500/20 text-yellow-400'}">
+                    ${c.status}
+                  </span>
+                </td>
+                <td class="p-3">
+                  <button onclick="deleteCourt('${c.id}')" class="text-red-400 hover:text-red-300 font-bold text-[11px]">
+                    <i class="fa-solid fa-trash ml-1"></i> حذف الملعب
+                  </button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function approveCourt(courtId) {
+      const court = courts.find(c => c.id === courtId);
+      if(court) {
+        court.status = 'APPROVED';
+        saveState();
+        renderCourtsGrid();
+        renderAdminDashboard();
+        renderOwnerDashboard();
+        alert(`تمت الموافقة على ملعب (${court.name}) وإدراجه رسمياً في قائمة الحجوزات.`);
+      }
+    }
+
+    function deleteCourt(courtId) {
+      if(confirm('هل انت أأكد من حذف هذا الملعب كلياً من المنصة؟')) {
+        courts = courts.filter(c => c.id !== courtId);
+        saveState();
+        renderCourtsGrid();
+        renderAdminDashboard();
+        renderOwnerDashboard();
+      }
+    }
+
+    function updateCommissionRate() {
+      const val = parseInt(document.getElementById('admin-commission-input').value);
+      if(!isNaN(val) && val >= 0 && val <= 50) {
+        commissionRate = val;
+        saveState();
+        alert(`تم تحديث عمولة المنصة بنجاح إلى ${commissionRate}%`);
+      }
+    }
+  </script>
+</body>
+</html>
