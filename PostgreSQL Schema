@@ -1,0 +1,43 @@
+-- جدول أدوار المستخدمين
+CREATE TYPE user_role AS ENUM ('super_admin', 'court_owner');
+
+-- جدول المستخدمين
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role user_role NOT NULL,
+    phone VARCHAR(20),
+    is_active BOOLEAN DEFAULT TRUE,
+    subscription_expires_at TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- جدول الملاعب
+CREATE TABLE courts (
+    id SERIAL PRIMARY KEY,
+    owner_id INT UNIQUE REFERENCES users(id) ON DELETE CASCADE, -- كل صاحب ملعب له ملعب واحد (أو قم بإزالة UNIQUE لعدة ملاعب)
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(20) CHECK (type IN ('football', 'padel')),
+    region VARCHAR(50) NOT NULL,
+    address TEXT NOT NULL,
+    hourly_rate DECIMAL(10,2) NOT NULL,
+    is_published BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- جدول الحجوزات (بدون إجبار الزبون على فتح حساب)
+CREATE TABLE bookings (
+    id SERIAL PRIMARY KEY,
+    court_id INT REFERENCES courts(id) ON DELETE CASCADE,
+    customer_name VARCHAR(100) NOT NULL,
+    customer_phone VARCHAR(20) NOT NULL,
+    booking_date DATE NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    status VARCHAR(20) DEFAULT 'confirmed' CHECK (status IN ('confirmed', 'cancelled')),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT unique_booking_slot UNIQUE (court_id, booking_date, start_time) -- منع الحجز المزدوج على مستوى القاعدة
+);

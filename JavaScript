@@ -1,0 +1,278 @@
+// middleware/auth.js
+const jwt = require('jsonwebtoken');
+const db = require('../db'); // إعدادات الاتصال بـ PostgreSQL
+
+const SECRET_KEY = process.env.JWT_SECRET || 'SUPER_SECRET_LEBANON_SPORT_KEY_2026';
+
+// التحقق من رمُز JWT
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) return res.status(401).json({ message: 'غير مصرح: يرجى تسجيل الدخول' });
+
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) return res.status(403).json({ message: 'رمز الدخول غير صالح أو منتهي الصلاحية' });
+        req.user = user;
+        next();
+    });
+};
+
+// التحقق من صلاحيات المدير العام فقط
+const requireSuperAdmin = (req, res, next) => {
+    if (req.user.role !== 'super_admin') {
+        return res.status(403).json({ message: 'الوصول مقتصر على المدير العام فقط' });
+    }
+    next();
+};
+
+// التحقق من صلاحيات صاحب الملعب وتأكيد فعالية حسابه واشتراكه
+const requireActiveCourtOwner = async (req, res, next) => {
+    if (req.user.role !== 'court_owner' && req.user.role !== 'super_admin') {
+        return res.status(403).json({ message: 'غير مصرح لك بالوصول' });
+    }
+
+    if (req.user.role === 'court_owner') {
+        try {
+            const result = await db.query(
+                'SELECT is_active, subscription_expires_at FROM users WHERE id = $1',
+                [req.user.id]
+            );
+            const user = result.rows[0];
+
+            if (!user || !user.is_active) {
+                return res.status(403).json({ message: 'حسابك معطل حالياً. يرجى التواصل مع المدير العام.' });
+            }
+
+            const now = new Date();
+            if (new Date(user.subscription_expires_at) < now) {
+                return res.status(403).json({ message: 'انتهت مدة اشتراكك. تم إيقاف لوحة التحكم تلقائياً.' });
+            }
+        } catch (err) {
+            return res.status(500).json({ message: 'خطأ في خادم البيانات' });
+        }
+    }
+    next();
+};
+
+module.exports = { authenticateToken, requireSuperAdmin, requireActiveCourtOwner };
+
+// server.js
+const express = require('express');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const db = require('./db');
+const { authenticateToken, requireSuperAdmin, requireActiveCourtOwner } = require('./middleware/auth');
+
+const app = express();
+app.use(express.json());
+
+const SECRET_KEY = process.env.JWT_SECRET || 'SUPER_SECRET_LEBANON_SPORT_KEY_2026';
+
+// -------------------------------------------------------------
+// 1. مسارات تسجيل الدخول (منفصلة للآدمن ولصاحب الملعب)
+// -------------------------------------------------------------
+
+// تسجيل دخول المدير العام
+app.post('/api/auth/admin-login', async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const result = await db.query('SELECT * FROM users WHERE username = $1 AND role = $2', [username, 'super_admin']);
+        const user = result.rows[0];
+
+        if (!user || !(await bcrypt.compare(password, user.password_hash))) {
+            return res.status(401).json({ message: 'بيانات الدخول غير صحيحة' });
+        }
+
+        const token = jwt.sign({ id: user.id, role: user.role, username: user.username }, SECRET_KEY, { expiresIn: '12h' });
+        res.json({ token, role: user.role, fullName: user.full_name });
+    } catch (err) {
+        res.status(500).json({ message: 'خطأ في الخادم' });
+    }
+});
+
+// تسجيل دخول صاحب الملعب
+app.post('/api/auth/owner-login', async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const result = await db.query('SELECT * FROM users WHERE username = $1 AND role = $2', [username, 'court_owner']);
+        const user = result.rows[0];
+
+        if (!user || !(await bcrypt.compare(password, user.password_hash))) {
+            return res.status(401).json({ message: 'اسم المستخدم أو كلمة المرور غير صحيحة' });
+        }
+
+        if (!user.is_active) {
+            return res.status(403).json({ message: 'حسابك معطل من قبل إدارة الموقع' });
+        }
+
+        if (new Date(user.subscription_expires_at) < new Date()) {
+            return res.status(403).json({ message: 'لقد انتهت فترة اشتراكك، يرجى تجديد الاشتراك مع المدير العام' });
+        }
+
+        const token = jwt.sign({ id: user.id, role: user.role, username: user.username }, SECRET_KEY, { expiresIn: '12h' });
+        res.json({ token, role: user.role, fullName: user.full_name });
+    } catch (err) {
+        res.status(500).json({ message: 'خطأ في الخادم' });
+    }
+});
+
+// -------------------------------------------------------------
+// 2. مسارات المدير العام (Super Admin Routes)
+// -------------------------------------------------------------
+
+// إنشاء حساب صاحب ملعب جديد وتعيين كلمة السر وتاريخ الاشتراك
+app.post('/api/admin/owners', authenticateToken, requireSuperAdmin, async (req, res) => {
+    const { fullName, username, password, phone, subscriptionDays } = req.body;
+    try {
+        const hashedPassword = await bcrypt.hash(password, 12);
+        
+        const expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() + (parseInt(subscriptionDays) || 30));
+
+        const result = await db.query(
+            `INSERT INTO users (full_name, username, password_hash, role, phone, is_active, subscription_expires_at)
+             VALUES ($1, $2, $3, 'court_owner', $4, true, $5) RETURNING id, full_name, username, subscription_expires_at`,
+            [fullName, username, hashedPassword, phone, expiryDate]
+        );
+
+        res.status(201).json({ message: 'تم إنشاء حساب صاحب الملعب بنجاح', owner: result.rows[0] });
+    } catch (err) {
+        if (err.code === '23505') return res.status(400).json({ message: 'اسم المستخدم مستخدم مسبقاً' });
+        res.status(500).json({ message: 'فشل إنشاء الحساب' });
+    }
+});
+
+// تفعيل / إيقاف حساب أو تجديد اشتراك صاحب ملعب
+app.patch('/api/admin/owners/:id/status', authenticateToken, requireSuperAdmin, async (req, res) => {
+    const { id } = req.params;
+    const { isActive, extendDays } = req.body;
+
+    try {
+        let query = 'UPDATE users SET is_active = COALESCE($1, is_active)';
+        let params = [isActive];
+
+        if (extendDays) {
+            query += `, subscription_expires_at = NOW() + INTERVAL '${parseInt(extendDays)} days'`;
+        }
+
+        query += ' WHERE id = $2 AND role = \'court_owner\' RETURNING id, is_active, subscription_expires_at';
+        params.push(id);
+
+        const result = await db.query(query, params);
+        res.json({ message: 'تم تحديث حالة الحساب بنجاح', user: result.rows[0] });
+    } catch (err) {
+        res.status(500).json({ message: 'خطأ في التحديث' });
+    }
+});
+
+// إعادة تعيين كلمة المرور لأي صاحب ملعب
+app.post('/api/admin/owners/:id/reset-password', authenticateToken, requireSuperAdmin, async (req, res) => {
+    const { id } = req.params;
+    const { newPassword } = req.body;
+
+    try {
+        const hashedPassword = await bcrypt.hash(newPassword, 12);
+        await db.query('UPDATE users SET password_hash = $1 WHERE id = $2', [hashedPassword, id]);
+        res.json({ message: 'تم إعادة تعيين كلمة المرور بنجاح' });
+    } catch (err) {
+        res.status(500).json({ message: 'فشل تغيير كلمة المرور' });
+    }
+});
+
+// -------------------------------------------------------------
+// 3. مسارات صاحب الملعب (Court Owner Routes)
+// -------------------------------------------------------------
+
+// جلب تفاصيل ملعب صاحب الحساب الحالي فقط
+app.get('/api/owner/my-court', authenticateToken, requireActiveCourtOwner, async (req, res) => {
+    try {
+        const result = await db.query('SELECT * FROM courts WHERE owner_id = $1', [req.user.id]);
+        res.json(result.rows[0] || null);
+    } catch (err) {
+        res.status(500).json({ message: 'خطأ في جلب البيانات' });
+    }
+});
+
+// جلب حجوزات ملعبه فقط
+app.get('/api/owner/my-bookings', authenticateToken, requireActiveCourtOwner, async (req, res) => {
+    try {
+        const result = await db.query(
+            `SELECT b.* FROM bookings b 
+             JOIN courts c ON b.court_id = c.id 
+             WHERE c.owner_id = $1 ORDER BY b.booking_date DESC, b.start_time DESC`,
+            [req.user.id]
+        );
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ message: 'خطأ في جلب الحجوزات' });
+    }
+});
+
+// تغيير كلمة المرور الخاصة بصاحب الحساب
+app.post('/api/user/change-password', authenticateToken, async (req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    try {
+        const result = await db.query('SELECT password_hash FROM users WHERE id = $1', [req.user.id]);
+        const user = result.rows[0];
+
+        if (!(await bcrypt.compare(oldPassword, user.password_hash))) {
+            return res.status(400).json({ message: 'كلمة المرور القديمة غير صحيحة' });
+        }
+
+        const newHashed = await bcrypt.hash(newPassword, 12);
+        await db.query('UPDATE users SET password_hash = $1 WHERE id = $2', [newHashed, req.user.id]);
+        res.json({ message: 'تم تغيير كلمة المرور بنجاح' });
+    } catch (err) {
+        res.status(500).json({ message: 'فشل تحديث كلمة المرور' });
+    }
+});
+
+// -------------------------------------------------------------
+// 4. مسارات الزبائن العامة (Public Routes - لا تتطلب حساب)
+// -------------------------------------------------------------
+
+// تصفح الملاعب المتاحة
+app.get('/api/public/courts', async (req, res) => {
+    try {
+        const { region, type } = req.query;
+        let query = 'SELECT c.id, c.name, c.type, c.region, c.address, c.hourly_rate FROM courts c JOIN users u ON c.owner_id = u.id WHERE c.is_published = true AND u.is_active = true AND u.subscription_expires_at > NOW()';
+        let params = [];
+
+        if (region) {
+            params.push(region);
+            query += ` AND c.region = $${params.length}`;
+        }
+        if (type) {
+            params.push(type);
+            query += ` AND c.type = $${params.length}`;
+        }
+
+        const result = await db.query(query, params);
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ message: 'خطأ في جلب الملاعب' });
+    }
+});
+
+// إرسال حجز جديد (من دون كلمة سر أو حساب)
+app.post('/api/public/bookings', async (req, res) => {
+    const { courtId, customerName, customerPhone, date, startTime, endTime } = req.body;
+    try {
+        // التحقق المباشر في دالة واحدة للوقاية من Race Conditions
+        const newBooking = await db.query(
+            `INSERT INTO bookings (court_id, customer_name, customer_phone, booking_date, start_time, end_time)
+             VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+            [courtId, customerName, customerPhone, date, startTime, endTime]
+        );
+
+        res.status(201).json({ message: 'تم تم تسجيل الحجز بنجاح', booking: newBooking.rows[0] });
+    } catch (err) {
+        if (err.code === '23505') { // Constraint error كود الحجز المزدوج
+            return res.status(409).json({ message: 'عذراً، هذا الوقت تم حجزه مسبقاً للملعب المختار.' });
+        }
+        res.status(500).json({ message: 'فشل إتمام الحجز' });
+    }
+});
+
+app.listen(5000, () => console.log('Server running safely on port 5000'));
